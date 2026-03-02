@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>0WM - AP Configuration</title>
+    <link rel="icon" href="/img/0wm.svg" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/"><img src="/img/0wm.svg" /></a>
+      <div>
+        <a href="/ap-config.html">AP Config</a>
+        <a href="/running-client.html">Running Client</a>
+        <a href="https://github.com/lab0-cc">GitHub</a>
+      </div>
+    </nav>
+    <main>
+      <h1>0WM Access Point (AP) Configuration</h1>
+      <p>
+        Setting up an AP first requires… an AP! If you do not have a spare AP
+        available, we provide a mock AP to debug and develop 0WM more easily.
+      </p>
+      <h2>
+        Using a mock AP<a
+          href="https://github.com/lab0-cc/0WM-AP-Mock"
+          target="_blank"
+        ></a>
+      </h2>
+      <p>
+        We provide a mock AP emulating results fetched from a live Zyxel
+        NWA50AX. See
+        <a href="https://github.com/lab0-cc/0WM-AP-Mock">0WM-AP-Mock</a> for
+        details on how to run it.
+      </p>
+      <h2>
+        Using an actual AP (OpenWRT)<a
+          href="https://github.com/lab0-cc/0WM-AP-OpenWRT"
+          target="_blank"
+        ></a>
+      </h2>
+      <p>
+        The 0WM client assumes that the AP will be connected to a mobile device
+        via Ethernet, while the latter is connected to the 0WM server. To
+        achieve this, we configure the AP in such a way that its Unique Local
+        Address (ULA) (and only it!) is advertised and, to ensure the AP can
+        easily be found, we advertise it with Multicast DNS (mDNS). We recommend
+        calling your AP
+        <code>ap</code>; it then becomes available through the mDNS name
+        <code>ap.local</code>.
+      </p>
+      <p>
+        Assuming you have some familiarity with OpenWRT, we provide files in the
+        <a href="https://github.com/lab0-cc/0WM-AP-OpenWRT"
+          >0WM-AP-OpenWRT repository</a
+        >
+        to properly configure your AP, along with CGI (Common Gateway Interface)
+        scripts that the 0WM client expects to call.
+      </p>
+      <p>
+        The approach works on a wide variety of OSes and platforms, except on
+        Android, which, 30&nbsp;years after its initial draft, still does not
+        support IPv6. To get Android support, you have to root your device and
+        manually inject a priority route to your AP through your wired interface
+        (see our <a href="/running-client.html">Running the Client</a> guide for
+        details).
+      </p>
+    </main>
+  </body>
+</html>
