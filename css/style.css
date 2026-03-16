@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+    font-family: "Noto Sans", sans-serif;
+    margin: 0;
+}
+
+nav {
+  padding: 5px 20px;
+  background: #fffe;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+  z-index: 1;
+  border-bottom: 1px solid #0002;
+  height: 60px;
+}
+
+nav > img {
+  height: 50px;
+}
+
+nav > div > a {
+  display: inline-block;
+  line-height: 20px;
+  padding: 10px 15px;
+  margin-left: 20px;
+  text-decoration: none;
+  color: #000;
+  background: #fffc;
+  border-radius: 15px;
+  box-shadow: 0 1px 5px -5px #000;
+  width: 50px;
+  text-align: center;
+}
+
+nav > div {
+  padding: 5px 0;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 10px;
+}
+
+main {
+  position: absolute;
+  top: 60px;
+  padding: 0 35px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+}
+
+main > * {
+  max-width: 1000px;
+  text-align: left;
+}
+
+code > span.comment {
+  font-style: italic;
+  color: #04ab9e;
+}
+
+code, pre {
+  font-family: "Roboto Mono", monospace;
+  font-size: .9rem;
+}
+
+code a {
+  color: #e7267a;
+}
+
+pre {
+  overflow-x: auto;
+  border: 1px solid #0003;
+  padding: 3px 6px;
+  border-radius: 10px;
+  position: relative;
+}
+
+pre::before {
+  content: attr(data-header);
+  position: absolute;
+  right: 0;
+  border-left: 1px solid #0003;
+  border-bottom: 1px solid #0003;
+  padding: 3px 6px;
+  top: 0;
+  border-bottom-left-radius: 10px;
+}
+
+code var {
+  font-style: inherit;
+  color: #2dabe3;
+}
+
+main > img {
+  width: 100%;
+}
+
+.window, .phone {
+  border: 1px solid #0003;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px -8px #000;
+}
+
+.phone {
+  border-radius: 24px;
+  border: 5px solid #ccc;
+  display: inline-block;
+  overflow: hidden;
+  font-size: 0px;
+  position: relative;
+}
+
+.phone > img {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.phone::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: calc(50% - 9px);
+  width: 18px;
+  height: 18px;
+  background: #000;
+  border-radius: 9px;
+}
+
+h2 > a, h3 > a {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border-top: 3px solid #555;
+  border-right: 3px solid #555;
+  margin-bottom: 4px;
+  margin-left: 14px;
+}
+
+h3 > a {
+  margin-bottom: 3px;
+}
+
+h2 > a::before, h3 > a::before {
+  content: "";
+  width: 3px;
+  height: 11px;
+  background: #555;
+  transform: rotate(45deg);
+  position: absolute;
+  right: -2px;
+  top: -.5px;
+  transform-origin: top;
+}
+
+h2 > a::after, h3 > a::after {
+  content: "";
+  background: #0002;
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  border-radius: 3px;
+}
+
+code {
+  background: #ddd;
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+pre code {
+  background: revert;
+  padding: 0;
+}
