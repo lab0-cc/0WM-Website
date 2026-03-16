@@ -1,0 +1,6 @@
+from: markdown-implicit_figures
+to: html5
+standalone: true
+template: template.html
+css:
+  - /css/style.css
