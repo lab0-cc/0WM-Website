@@ -5,7 +5,7 @@ SHELL := /bin/bash
 build:
 	rm -rf .dist
 	mkdir -p .dist
-	pandoc index.md -d html -o .dist/index.html
+	for file in ./*.md; do pandoc "$$file" -d html -o ".dist/$${file%md}html"; done
 	cp -R css .dist
 	cp -R img .dist
 

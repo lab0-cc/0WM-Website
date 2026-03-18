@@ -2,5 +2,9 @@ from: markdown-implicit_figures
 to: html5
 standalone: true
 template: template.html
+table-of-contents: true
 css:
   - /css/style.css
+filters:
+  - lua/morph-href.lua
+  - lua/target-blank.lua

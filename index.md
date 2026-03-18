@@ -8,116 +8,69 @@ description: 0WM project
 
 0WM, pronounced /zʋʊm/ or /oʊm/, is a next-generation Wi-Fi mapping solution using off-the-shelf components and open standards to perform hassle-free, large-scale Wi-Fi surveys.
 
-This project still being in its pre-alpha stage, don’t hesitate to come back to this page from time to time to check its progress.
+::: note
+0WM is gradually shaping up to provide a production-grade infrastructure for Wi-Fi mapping. As we are smoothing out the rough edges, don’t hesitate to check back from time to time to see our progress.
+:::
 
-Wi-Fi has gained so much popularity in the recent years that your devices, at home or at work, are less and less likely to be connected to the Internet using a wire. Laptops themselves are slowly losing their 8P8C ports. And yet, deploying a reliable Wi-Fi network is no easy task, because of walls, urban wave pollution, or even weather radars. Professional Wi-Fi survey tools are so expensive that private individuals, associations and small businesses cannot afford them, and free ones are too cumbersome.
+Wi-Fi has become so popular in recent years that your devices, at home or at work, are less likely to be connected to the Internet using a wire. Laptops themselves are slowly losing their 8P8C (RJ45 / Ethernet) ports. And yet, deploying a reliable Wi-Fi network is no easy task, because of walls, urban wave pollution, or even weather radars. Professional Wi-Fi survey tools are so expensive that private individuals, associations, and small businesses cannot afford them, and free ones are too cumbersome.
 
-0WM makes high quality Wi-Fi surveys affortable to everyone. Why would you need a dedicated device for Wi-Fi surveys when you already have a phone packed with sensors? Why would you need a dedicated wireless sensor when you already have factory-calibrated omnidirectional APs?
+0WM makes high-quality Wi-Fi surveys affordable to everyone. Why would you need a dedicated device for Wi-Fi surveys when you already have a phone packed with sensors? Why would you need a dedicated wireless sensor when you already have factory-calibrated omnidirectional APs?
 
 # Getting started
 
-0WM is not ready for use by non-developers. The following instructions will get you started setting up a development environment to tinker with it. We present here the following components:
+The 0WM software suite consists of the following components:
 
 * **0WM Server**, 0WM’s backend, featuring all the hidden bits of logic, and exposing REST and WebSocket APIs;
 * **0WM OpMode**, an operator frontend allowing to upload floorplans and position them on a map with precise georeferencing;
 * **0WM Client**, a mobile frontend allowing to perform real-time Wi-Fi surveys;
 * **0WM AP**, pieces of software and configuration to properly setup an AP for 0WM.
 
-## 0WM Server[](https://github.com/lab0-cc/0WM-Server){target="_blank"}
+## Prerequisites
 
-Currently, 0WM is not packaged and some of its server OCaml dependencies are not live on OPAM. Therefore, a few manual operations are needed. We give here the required commands to get started on a fresh Debian Trixie container:
+To setup 0WM on a production environment, you will need:
 
-<pre data-header="bash"><code><span class="comment"># Init OPAM</span>
-opam init --compiler=5.2.1 --shell-setup
-<span class="comment"># Update the environment</span>
-eval <var>$(opam env)</var>
-<span class="comment"># Pin the unreleased Gendarme dependencies</span>
-opam pin add --no-action --yes git+<a href="https://github.com/bensmrs/gendarme" target="_blank">https://github.com/bensmrs/gendarme</a>
-<span class="comment"># Clone this repository</span>
-git clone <a href="https://github.com/lab0-cc/0WM-Server.git" target="_blank">https://github.com/lab0-cc/0WM-Server.git</a>
-<span class="comment"># Enter the newly created directory</span>
-cd 0WM-Server
-<span class="comment"># Install the dependencies</span>
-opam install --confirm-level=unsafe-yes --deps-only .
-<span class="comment"># Compile and run the server</span>
-dune exec src/zwm.exe</code></pre>
+* A [supported platform](https://ocaml.org/tools/native-target#platform-support) to run the server;
+* An access point with OpenWRT installed;
+* A smartphone with WebXR support and a wired connection to the AP (most likely through a USB-C to Ethernet adapter).
 
-By default, the server listens to `127.0.0.1:8000`; this can be configured in the `config.json` file. Note that appart from floorplan images, **the server’s internal storage is not persistent yet**; hence, stopping the server leads to data loss (remember, this is a development environment!).
+## Software
 
-## 0WM OpMode[]("https://github.com/lab0-cc/0WM-OpMode"){target="_blank"}
+### 0WM Server[](https://github.com/lab0-cc/0WM-Server)
 
-Being a simple frontend, the OpMode interface can be deployed however you want. Something along the lines of `python3 -m http.server 8001` at the root of the repository will get you going.
+The 0WM Server is the central backend of 0WM, handling all its core logic. It manages floorplans and Wi-Fi measurement sessions, stores the data, and exposes REST and WebSocket APIs used by the project’s frontends.
 
-The OpMode can be configured with the `config.json` file at the root of the repository.
+For full installation and configuration instructions, please refer to the [0WM-Server repository](https://github.com/lab0-cc/0WM-Server).
+
+### 0WM OpMode[]("https://github.com/lab0-cc/0WM-OpMode")
+
+The 0WM Opmode is an operator dashboard frontend that communicates with the server to upload floorplans, edit boundaries, and position them on a map with precise georeferencing.
+
+When creating a new project, you will be prompted to upload a file. Select a clear, top-down floorplan image (PNG, JPEG, WebP) of the building you want to import, and draw its boundaries and walls in the **Floorplan Editor**. In the **Map Editor**, you will place 3 anchor points to map the floorplan to the real world. We recommend putting these anchors at places that easy to locate on both the floorplan and the world map, to ensure accurate positioning. Lastly, provide the altitude parameters (you only need to fill in 2 of the floor altitude, ceiling altitude, and height fields) in the **Additional Parameters** panel.
 
 ```{=html}
 <img class="window" src="/img/opmode.png" alt="0WM OpMode">
 ```
 
-## 0WM Client[](https://github.com/lab0-cc/0WM-Client){target="_blank"}
+### 0WM Client[](https://github.com/lab0-cc/0WM-Client)
 
-Being a simple frontend, the client interface can be deployed however you want. Something along the lines of `python3 -m http.server 8002` at the root of the repository will get you going.
+The 0WM Client is a mobile frontend that allows you to perform real-time Wi-Fi surveys. It fetches floorplans from the server, retrieves Wi-Fi scan data from an access point, uses WebXR to track position and movement, and streams measurements back to the server in real-time.
 
-The client can be configured with the `config.json` file at the root of the repository.
+For full installation and deployment instructions, please refer to the [0WM-Client repository](https://github.com/lab0-cc/0WM-Client).
 
 <div class="phone">![0WM client](/img/client.png)</div>
 
-## 0WM AP
+### 0WM AP
 
-Setting up an AP first requires… an AP! If you do not have a spare AP available, we provide a mock AP to debug and develop 0WM more easily.
+Unlike the other 0WM software components, this one is more of a collection of tools and settings to configure compatible access points (currently, mock and OpenWRT APs). For detailed instructions on configuring supported access points, please see our dedicated [configuration guide](ap.md).
 
-### Using a mock AP[](https://github.com/lab0-cc/0WM-AP-Mock){target="_blank"}
+## Survey Workflow
 
-We provide a mock AP emulating results fetched from a live Zyxel NWA50AX. It can be run by specifying to its script the local port to bind to: `python3 server.py 8003` at the root of the repository will get you going.
+Once the software components are running in your environment, a typical survey workflow operates as follows:
 
-### Using an actual AP (OpenWRT)[](https://github.com/lab0-cc/0WM-AP-OpenWRT){target="_blank"}
-
-The 0WM client has been designed on the assumption that an AP be connected to a mobile device via Ethernet, while the latter is connected to the 0WM server. To achieve this, we configure the AP in such a way that its ULA (and only it!) is advertised and, to ensure the AP can easily be found, we advertise it with mDNS. We recommend calling your AP `ap`; it then becomes available through the mDNS name `ap.local`.
-
-Assuming that you have a fair bit of knowledge on OpenWRT, we provide files to properly configure your AP, along with CGI scripts that the 0WM client expects to call.
-
-The approach works on a wide variety of OSes and platforms, except on Android, which, 30&nbsp;years after its initial draft, still does not support IPv6. To get Android support, you have to root your device and manually inject a priority route to your AP through your wired interface (but this will not be enough to get mDNS records).
+1. Start the **0WM Server** to act as the central hub;
+2. Prepare the survey in the **0WM OpMode**: upload a floorplan image, draw walls and boundaries, define your geo-anchors and altitude parameters, and synchronize this data with the server;
+3. Perform the survey in the **0WM Client**: connect to both the server and the AP, select your floorplan, walk around your surveying area and perform Wi-Fi measurements.
 
 # Running the client
 
-We support two ways of testing the 0WM client:
-
-* On a mobile device (currently tested on Chrome on Android and XRViewer on iOS, each with its quirks);
-* On a computer, with a WebXR emulator (currently tested on Chrome with Immersive Web Emulator).
-
-## On a phone
-
-There are dramatic differences depending on whether you are running the 0WM client on Android or iOS. But first, for the common part, configure your phone so that it can communicate with 0WM services (for example, by forwarding your local ports to your phone). Then, connect your AP to your phone via Ethernet (you may need an USB-C dongle).
-
-### On Android
-
-#### Network configuration
-
-To access your AP, you unfortunately need to perform some pretty low-level network tricks that require rooting your phone. Grab your AP’s ULA, and inject an IPv6 route in your default routing table to this ULA. The following example shows how to connect to your phone with ADB and inject a route to `fd40:134a:ffad::1` through `eth0` (yours will probably differ!):
-
-<pre data-header="bash"><code><span class="comment"># Connect to the device</span>
-adb shell
-<span class="comment"># Inject the route</span>
-ip -6 route add table local fd40:134a:ffad::1 dev eth0</code></pre>
-
-Your AP will only be available through its ULA.
-
-#### Browser configuration
-
-You may need to tell Chrome to enable WebXR. To this end, look for the WebXR flags in `chrome://flags`.
-
-### On iOS
-
-#### Network configuration
-
-No configuration is required; your AP is available both through its mDNS name and its ULA.
-
-#### Browser configuration
-
-Unfortunately, no browser fully supports WebXR on iOS; Safari does not implement it despite having access to all the necessary APIs, and Firefox only supports a subset of it, in a browser called XRViewer, on a dedicated branch that has not been updated in 5&nbsp;years. Still, we recommend using this browser, as it is the only one available to us.
-
-The app may crash while running the 0WM client; there is nothing we can do about that.
-
-## On a computer
-
-To test the 0WM client on a computer (for debugging and development), we recommend to use Chrome, with Meta’s WebXR emulator extension, Immersive Web Emulator. It gives you the most fully-featured environment to test the client.
+Testing the 0WM client requires specific network and browser configurations depending on your environment. Please see the detailed [client guide](client.md) for complete instructions and configuration examples.
