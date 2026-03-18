@@ -1,60 +1,146 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+html {
+  background: #f8f8f8;
+}
+
 body {
-    font-family: "Noto Sans", sans-serif;
-    margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  margin: 0;
+  container: body / inline-size;
+}
+
+a {
+  color: #03d;
+  text-decoration: none;
+}
+
+[id] {
+  scroll-margin-top: 85px;
+}
+
+p {
+  margin: 16px 0;
 }
 
 nav {
-  padding: 5px 20px;
+  padding: 12px 30px;
   background: #fffe;
   position: fixed;
   width: 100%;
   top: 0;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   box-sizing: border-box;
   z-index: 1;
   border-bottom: 1px solid #0002;
-  height: 60px;
 }
 
-nav > img {
-  height: 50px;
-}
-
-nav > div > a {
+nav * {
+  height: 40px;
   display: inline-block;
-  line-height: 20px;
-  padding: 10px 15px;
-  margin-left: 20px;
-  text-decoration: none;
-  color: #000;
-  background: #fffc;
-  border-radius: 15px;
-  box-shadow: 0 1px 5px -5px #000;
-  width: 50px;
-  text-align: center;
+  vertical-align: top;
 }
 
 nav > div {
-  padding: 5px 0;
-  display: inline-block;
-  vertical-align: top;
+  margin-left: 30px;
+}
+
+nav > div > a {
+  padding: 0 16px;
+  text-decoration: none;
+  color: #456;
+  background: #f1f5f9;
+  border-radius: 20px;
+  font-size: .9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all .2s ease;
+  line-height: 38px;
+}
+
+nav > div > a:not(:first-child) {
   margin-left: 10px;
 }
 
+nav > div > a:hover {
+  background: #e5eaf0;
+  color: #122;
+}
+
+aside.toc {
+  position: fixed;
+  top: 85px;
+  background: #fff;
+  padding: 8px 12px;
+  font-size: .9rem;
+  right: 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 123px);
+}
+
+aside.toc > ul li::before {
+  content: "";
+  display: inline-block;
+  margin-right: 8px;
+  margin-left: -8px;
+  border: 1px solid #037;
+}
+
+aside.toc > ul li::marker {
+  content: "";
+}
+
+aside.toc > ul > li::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 5px;
+  margin-bottom: 1px;
+}
+
+aside.toc a {
+  color: #037;
+}
+
+aside.toc > ul {
+  margin: 0;
+  padding-left: 10px;
+}
+
+aside.toc > ul ul {
+  padding-left: 28px;
+}
+
+aside.toc > ul > li > ul > li::before {
+  width: 5px;
+  height: 5px;
+  margin-bottom: 2px;
+  transform: rotate(45deg);
+}
+
+aside.toc > ul > li > ul > li > ul > li::before {
+  width: 6px;
+  height: 6px;
+  margin-bottom: 1px;
+}
+
 main {
-  position: absolute;
-  top: 60px;
-  padding: 0 35px;
-  box-sizing: border-box;
+  padding: 20px 35px;
   width: 100%;
   text-align: center;
+  background: #fff;
+  border-right: 1px solid #0002;
+  box-sizing: content-box;
+  top: 65px;
+  position: absolute;
 }
 
 main > * {
   max-width: 1000px;
   text-align: left;
+}
+
+main > :first-child {
+  margin-top: 0;
 }
 
 code > span.comment {
@@ -178,4 +264,114 @@ code {
 pre code {
   background: revert;
   padding: 0;
+}
+
+main > .note {
+  border-left: 4px solid #037;
+  padding: 4px 4px 4px 8px;
+  color: #037;
+  background: #eff6ff;
+  border-radius: 3px;
+  margin: 16px 0;
+}
+
+main > .note > p:first-child {
+  margin-top: 0;
+}
+
+main > .note > p:last-child {
+  margin-bottom: 0;
+}
+
+@container body (max-width: 1310px) {
+  aside.toc {
+    top: 75px;
+    right: 10px;
+    max-height: calc(100vh - 103px)
+  }
+}
+
+@container body (min-width: 1291px) {
+  aside.toc {
+    max-width: 174px;
+    border-radius: 12px;
+    border: 1px solid #0002;
+  }
+}
+
+@container body (max-width: 1290px) {
+  aside.toc {
+    top: 65px;
+    border-bottom: 1px solid #0002;
+    right: 0;
+    left: 1071px;
+    padding: 8px;
+    max-height: calc(100vh - 81px);
+  }
+}
+
+@container body (max-width: 1270px) {
+  aside.toc {
+    left: calc(100vw - 220px);
+  }
+
+  main {
+    padding: 20px calc(50vw - 610px);
+  }
+}
+
+@container body (min-width: 1241px) {
+  main {
+    max-width: 1000px;
+  }
+}
+
+@container body (max-width: 1240px) {
+  main {
+    width: calc(100vw - 260px);
+    padding: 20px;
+  }
+}
+
+@container body (max-width: 768px) {
+  aside.toc {
+    display: none;
+  }
+
+  nav {
+    padding: 12px 24px;
+  }
+
+  main {
+    padding: 20px 35px;
+    border: none;
+    width: calc(100% - 70px);
+  }
+}
+
+@container body (max-width: 650px) {
+  [id] {
+    scroll-margin-top: 130px;
+  }
+
+  nav {
+    padding: 12px;
+    text-align: center;
+  }
+
+  nav > a {
+    margin-bottom: 10px;
+  }
+
+  nav > div {
+    display: block;
+    margin: 0;
+    height: auto;
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  main {
+    top: 115px;
+  }
 }

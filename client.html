@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0WM — Running the client</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav><a href="/"><img src="/img/0wm.svg"></a><div><a href="/ap.html">AP configuration</a><a href="/client.html">Running the client</a><a href="https://github.com/lab0-cc">GitHub organization</a></div></nav>
+<aside class="toc">
+  <ul>
+  <li><a href="#running-the-client" id="toc-running-the-client">Running
+  the client</a>
+  <ul>
+  <li><a href="#on-a-phone" id="toc-on-a-phone">On a phone</a>
+  <ul>
+  <li><a href="#on-android" id="toc-on-android">On Android</a></li>
+  <li><a href="#on-ios" id="toc-on-ios">On iOS</a></li>
+  </ul></li>
+  <li><a href="#on-a-computer" id="toc-on-a-computer">On a
+  computer</a></li>
+  </ul></li>
+  </ul>
+</aside>
+<main><h1 id="running-the-client">Running the client</h1>
+<p>We support two ways of testing the 0WM client:</p>
+<ul>
+<li>On a mobile device (currently tested on Chrome on Android and
+XRViewer on iOS, each with its quirks);</li>
+<li>On a computer, with a WebXR emulator (currently tested on Chrome
+with <a
+href="https://chromewebstore.google.com/detail/cgffilbpcibhmcfbgggfhfolhkfbhmik"
+target="_blank" rel="noopener noreferrer">Immersive Web
+Emulator</a>).</li>
+</ul>
+<h2 id="on-a-phone">On a phone</h2>
+<p>There are dramatic differences depending on whether you are running
+the 0WM client on Android or iOS. But first, for the common part,
+configure your phone so that it can communicate with 0WM services (for
+example, by forwarding your local ports to your phone). Because the
+client needs a stable connection to the server while also receiving scan
+data from the AP, and due to the fact that most phones can only have one
+active Wi-Fi connection, we recommend to use Ethernet. Connect your AP
+to your phone via an Ethernet cable (you may need an RJ45 to USB-C
+dongle).</p>
+<h3 id="on-android">On Android</h3>
+<h4 id="network-configuration">Network configuration</h4>
+<p>To access your AP, you unfortunately need to perform some pretty
+low-level network tricks that require rooting your phone. Grab your AP’s
+ULA, and inject an IPv6 route in your default routing table to this ULA.
+The following example shows how to connect to your phone with ADB and
+inject a route to <code>fd40:134a:ffad::1</code> through
+<code>eth0</code> (yours will probably differ!):</p>
+<p>To access your AP, you unfortunately need to perform some pretty
+low-level network tricks that require rooting your phone. Grab your AP’s
+ULA, and inject an IPv6 route in your default routing table to this ULA.
+The following example shows how to connect to your phone with ADB and
+inject a route to <code>&lt;YOUR_AP_ULA&gt;</code> (<em>e.g.</em>
+<code>fd40:134a:ffad::1</code>) through
+<code>&lt;YOUR_PHONE_INTERFACE&gt;</code> (<em>e.g.</em>
+<code>eth0</code>):</p>
+<pre data-header="bash"><code><span class="comment"># Connect to the device</span>
+adb shell
+<span class="comment"># Find your interface name (look for the ethernet connection, typically eth0)</span>
+ip addr show
+<span class="comment"># Inject the route (replace the bolded variables with your actual values)</span>
+ip -6 route add table local <b>&lt;YOUR_AP_ULA&gt;</b> dev <b>&lt;YOUR_PHONE_INTERFACE&gt;</b></code></pre>
+<p>Your AP will only be available through its ULA.</p>
+<h4 id="browser-configuration">Browser configuration</h4>
+<p>You may need to tell Chrome to enable WebXR. To this end, look for
+the WebXR flags in <code>chrome://flags</code>.</p>
+<h3 id="on-ios">On iOS</h3>
+<h4 id="network-configuration-1">Network configuration</h4>
+<p>No configuration is required; your AP is available both through its
+mDNS name and its ULA.</p>
+<h4 id="browser-configuration-1">Browser configuration</h4>
+<p>Unfortunately, no browser fully supports WebXR on iOS; Safari does
+not implement it despite having access to all the necessary APIs, and
+Firefox only supports a subset of it, in a browser called <a
+href="https://apps.apple.com/app/webxr-viewer/id1295998056"
+target="_blank" rel="noopener noreferrer">WebXR Viewer</a>, on a
+dedicated branch that has not been updated in 5 years. Still, we
+recommend using this browser, as it is the only viable option available
+to us.</p>
+<p>The app may crash while running the 0WM client; there is nothing we
+can do about that.</p>
+<h2 id="on-a-computer">On a computer</h2>
+<p>To test the 0WM client on a computer (for debugging and development),
+we recommend using Chrome with Meta’s WebXR emulator extension, <a
+href="https://chromewebstore.google.com/detail/cgffilbpcibhmcfbgggfhfolhkfbhmik"
+target="_blank" rel="noopener noreferrer">Immersive Web Emulator</a>. To
+use the emulator, open Chrome’s Developer Tools (Inspector), go to the
+WebXR tab, and enable the emulation. It gives you the most
+fully-featured environment to test the client.</p></main>
+</body>
+</html>
