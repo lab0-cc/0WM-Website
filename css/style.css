@@ -88,6 +88,7 @@ aside.toc > ul li::before {
 
 aside.toc > ul li::marker {
   content: "";
+  color: #fff;
 }
 
 aside.toc > ul > li::before {
