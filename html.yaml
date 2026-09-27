@@ -6,5 +6,6 @@ table-of-contents: true
 css:
   - /css/style.css
 filters:
+  - lua/code-links.lua
   - lua/morph-href.lua
   - lua/target-blank.lua
