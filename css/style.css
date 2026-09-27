@@ -1,4 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@font-face {
+  font-display: swap;
+  font-family: "Noto Sans";
+  font-style: normal;
+  src: url(/fonts/NotoSans-0WM-Regular.woff2) format(woff2);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Noto Sans";
+  font-style: italic;
+  src: url(/fonts/NotoSans-0WM-Italic.woff2) format(woff2);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  src: url(/fonts/RobotoMono-0WM-Regular.woff2) format(woff2);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Roboto Mono";
+  font-style: italic;
+  src: url(/fonts/RobotoMono-0WM-Italic.woff2) format(woff2);
+}
 
 html {
   background: #f8f8f8;
