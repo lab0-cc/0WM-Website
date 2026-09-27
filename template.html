@@ -10,11 +10,12 @@ $for(css)$
 $endfor$
 </head>
 <body>
-<nav><a href="/"><img src="/img/0wm.svg"></a><div><a href="/ap.html">AP configuration</a><a href="/client.html">Running the client</a><a href="https://github.com/lab0-cc">GitHub organization</a></div></nav>
+<nav><a href="/"><img src="/img/0wm.svg"></a><ul><li class="menu$if(p-install)$ current$endif$$if(sp-install)$ current-sub$endif$"><a href="/install.html">Installation guides</a><ul><li$if(p-install-server)$ class="current"$endif$><a href="/install-server.html">Server</a></li><li$if(p-install-opmode)$ class="current"$endif$><a href="/install-opmode.html">OpMode</a></li><li$if(p-install-client)$ class="current"$endif$><a href="/install-client.html">Client</a></li><li$if(p-install-ap)$ class="current"$endif$><a href="/install-ap.html">AP</a></li></ul></li><li class="menu$if(p-guides)$ current$endif$$if(sp-guides)$ current-sub$endif$"><a href="/guides.html">User guides</a><ul><li$if(p-guide-server)$ class="current"$endif$><a href="/guide-server.html">Server</a></li><li$if(p-guide-opmode)$ class="current"$endif$><a href="/guide-opmode.html">OpMode</a></li><li$if(p-guide-client)$ class="current"$endif$><a href="/guide-client.html">Client</a></li></ul></li><li><a href="https://github.com/lab0-cc">GitHub organization</a></li></ul></nav>
 $if(toc)$
 <aside class="toc">
   $table-of-contents$
 </aside>
+<script src="/js/toc.js"></script>
 $endif$
 <main>$body$</main>
 </body>
