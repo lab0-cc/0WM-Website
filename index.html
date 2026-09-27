@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<nav><a href="/"><img src="/img/0wm.svg"></a><div><a href="/ap.html">AP configuration</a><a href="/client.html">Running the client</a><a href="https://github.com/lab0-cc">GitHub organization</a></div></nav>
+<nav><a href="/"><img src="/img/0wm.svg"></a><ul><li class="menu"><a href="/install.html">Installation guides</a><ul><li><a href="/install-server.html">Server</a></li><li><a href="/install-opmode.html">OpMode</a></li><li><a href="/install-client.html">Client</a></li><li><a href="/install-ap.html">AP</a></li></ul></li><li class="menu"><a href="/guides.html">User guides</a><ul><li><a href="/guide-server.html">Server</a></li><li><a href="/guide-opmode.html">OpMode</a></li><li><a href="/guide-client.html">Client</a></li></ul></li><li><a href="https://github.com/lab0-cc">GitHub organization</a></li></ul></nav>
 <aside class="toc">
   <ul>
   <li><a href="#introduction"
@@ -20,18 +20,17 @@
   id="toc-prerequisites">Prerequisites</a></li>
   <li><a href="#software" id="toc-software">Software</a>
   <ul>
-  <li><a href="#wm-server" id="toc-wm-server">0WM Server</a></li>
-  <li><a href="#wm-opmode" id="toc-wm-opmode">0WM OpMode</a></li>
-  <li><a href="#wm-client" id="toc-wm-client">0WM Client</a></li>
-  <li><a href="#wm-ap" id="toc-wm-ap">0WM AP</a></li>
+  <li><a href="#zwm-server" id="toc-zwm-server">0WM Server</a></li>
+  <li><a href="#zwm-opmode" id="toc-zwm-opmode">0WM OpMode</a></li>
+  <li><a href="#zwm-client" id="toc-zwm-client">0WM Client</a></li>
+  <li><a href="#zwm-ap" id="toc-zwm-ap">0WM AP</a></li>
   </ul></li>
-  <li><a href="#survey-workflow" id="toc-survey-workflow">Survey
-  Workflow</a></li>
+  <li><a href="#your-first-survey" id="toc-your-first-survey">Your first
+  survey</a></li>
   </ul></li>
-  <li><a href="#running-the-client" id="toc-running-the-client">Running
-  the client</a></li>
   </ul>
 </aside>
+<script src="/js/toc.js"></script>
 <main><h1 id="introduction">Introduction</h1>
 <p>0WM, pronounced /zʋʊm/ or /oʊm/, is a next-generation Wi-Fi mapping
 solution using off-the-shelf components and open standards to perform
@@ -43,32 +42,33 @@ edges, don’t hesitate to check back from time to time to see our
 progress.</p>
 </div>
 <p>Wi-Fi has become so popular in recent years that your devices, at
-home or at work, are less likely to be connected to the Internet using a
-wire. Laptops themselves are slowly losing their 8P8C (RJ45 / Ethernet)
-ports. And yet, deploying a reliable Wi-Fi network is no easy task,
-because of walls, urban wave pollution, or even weather radars.
+home or at work, are less and less likely to be connected to the
+Internet using a wire. Laptops themselves are slowly losing their
+Ethernet ports. And yet, deploying a reliable Wi-Fi network is no easy
+task, because of walls, urban wave pollution, or even weather radars.
 Professional Wi-Fi survey tools are so expensive that private
 individuals, associations, and small businesses cannot afford them, and
 free ones are too cumbersome.</p>
-<p>0WM makes high-quality Wi-Fi surveys affordable to everyone. Why
-would you need a dedicated device for Wi-Fi surveys when you already
-have a phone packed with sensors? Why would you need a dedicated
-wireless sensor when you already have factory-calibrated omnidirectional
-APs?</p>
+<p>The 0WM project strives to make high-quality Wi-Fi surveys affordable
+to everyone. Why would you need a dedicated device for Wi-Fi surveys
+when you already have a phone packed with sensors? Why would you need a
+dedicated wireless sensor when you already have factory-calibrated
+omnidirectional APs?</p>
 <h1 id="getting-started">Getting started</h1>
 <p>The 0WM software suite consists of the following components:</p>
 <ul>
-<li><strong>0WM Server</strong>, 0WM’s backend, featuring all the hidden
-bits of logic, and exposing REST and WebSocket APIs;</li>
-<li><strong>0WM OpMode</strong>, an operator frontend allowing to upload
-floorplans and position them on a map with precise georeferencing;</li>
-<li><strong>0WM Client</strong>, a mobile frontend allowing to perform
-real-time Wi-Fi surveys;</li>
-<li><strong>0WM AP</strong>, pieces of software and configuration to
-properly setup an AP for 0WM.</li>
+<li><a href="#zwm-server">0WM Server</a>, 0WM’s backend, featuring all
+the hidden bits of logic, and exposing REST and WebSocket APIs;</li>
+<li><a href="#zwm-opmode">0WM OpMode</a>, an operator frontend allowing
+to upload floorplans and position them on a map with precise
+georeferencing;</li>
+<li><a href="#zwm-client">0WM Client</a>, a mobile frontend allowing to
+perform real-time Wi-Fi surveys;</li>
+<li><a href="#zwm-ap">0WM AP</a>, pieces of software and configuration
+to properly setup an AP for 0WM.</li>
 </ul>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>To setup 0WM on a production environment, you will need:</p>
+<p>To setup 0WM on a production environment, you need:</p>
 <ul>
 <li>A <a href="https://ocaml.org/tools/native-target#platform-support"
 target="_blank" rel="noopener noreferrer">supported platform</a> to run
@@ -78,33 +78,28 @@ the server;</li>
 (most likely through a USB-C to Ethernet adapter).</li>
 </ul>
 <h2 id="software">Software</h2>
-<h3 id="wm-server">0WM Server<a
+<h3 id="zwm-server">0WM Server<a
 href="https://github.com/lab0-cc/0WM-Server" target="_blank"
 rel="noopener noreferrer"></a></h3>
 <p>The 0WM Server is the central backend of 0WM, handling all its core
 logic. It manages floorplans and Wi-Fi measurement sessions, stores the
 data, and exposes REST and WebSocket APIs used by the project’s
 frontends.</p>
-<p>For full installation and configuration instructions, please refer to
-the <a href="https://github.com/lab0-cc/0WM-Server" target="_blank"
-rel="noopener noreferrer">0WM-Server repository</a>.</p>
-<h3 id="wm-opmode">0WM OpMode<a href=""
-title="https://github.com/lab0-cc/0WM-OpMode"></a></h3>
+<p class="buttons">
+<a href="install-server.html" class="button">Installation guide</a><a
+href="guide-server.html" class="button">User guide</a>
+</p>
+<h3 id="zwm-opmode">0WM OpMode<a
+href="https://github.com/lab0-cc/0WM-OpMode" target="_blank"
+rel="noopener noreferrer"></a></h3>
 <p>The 0WM Opmode is an operator dashboard frontend that communicates
 with the server to upload floorplans, edit boundaries, and position them
 on a map with precise georeferencing.</p>
-<p>When creating a new project, you will be prompted to upload a file.
-Select a clear, top-down floorplan image (PNG, JPEG, WebP) of the
-building you want to import, and draw its boundaries and walls in the
-<strong>Floorplan Editor</strong>. In the <strong>Map Editor</strong>,
-you will place 3 anchor points to map the floorplan to the real world.
-We recommend putting these anchors at places that easy to locate on both
-the floorplan and the world map, to ensure accurate positioning. Lastly,
-provide the altitude parameters (you only need to fill in 2 of the floor
-altitude, ceiling altitude, and height fields) in the <strong>Additional
-Parameters</strong> panel.</p>
-<img class="window" src="/img/opmode.png" alt="0WM OpMode">
-<h3 id="wm-client">0WM Client<a
+<p class="buttons">
+<a href="install-opmode.html" class="button">Installation guide</a><a
+href="guide-opmode.html" class="button">User guide</a>
+</p>
+<h3 id="zwm-client">0WM Client<a
 href="https://github.com/lab0-cc/0WM-Client" target="_blank"
 rel="noopener noreferrer"></a></h3>
 <p>The 0WM Client is a mobile frontend that allows you to perform
@@ -112,35 +107,29 @@ real-time Wi-Fi surveys. It fetches floorplans from the server,
 retrieves Wi-Fi scan data from an access point, uses WebXR to track
 position and movement, and streams measurements back to the server in
 real-time.</p>
-<p>For full installation and deployment instructions, please refer to
-the <a href="https://github.com/lab0-cc/0WM-Client" target="_blank"
-rel="noopener noreferrer">0WM-Client repository</a>.</p>
-<div class="phone">
-<img src="/img/client.png" alt="0WM client" />
-</div>
-<h3 id="wm-ap">0WM AP</h3>
+<p class="buttons">
+<a href="install-client.html" class="button">Installation guide</a><a
+href="guide-client.html" class="button">User guide</a>
+</p>
+<h3 id="zwm-ap">0WM AP</h3>
 <p>Unlike the other 0WM software components, this one is more of a
 collection of tools and settings to configure compatible access points
-(currently, mock and OpenWRT APs). For detailed instructions on
-configuring supported access points, please see our dedicated <a
-href="ap.html">configuration guide</a>.</p>
-<h2 id="survey-workflow">Survey Workflow</h2>
-<p>Once the software components are running in your environment, a
-typical survey workflow operates as follows:</p>
+(currently those running OpenWRT).</p>
+<p class="buttons">
+<a href="install-ap.html" class="button">Installation guide</a>
+</p>
+<h2 id="your-first-survey">Your first survey</h2>
+<p>Once the software components are <a href="install.html">configured
+and running</a> in your environment, a typical survey workflow operates
+as follows:</p>
 <ol type="1">
-<li>Start the <strong>0WM Server</strong> to act as the central
-hub;</li>
-<li>Prepare the survey in the <strong>0WM OpMode</strong>: upload a
-floorplan image, draw walls and boundaries, define your geo-anchors and
-altitude parameters, and synchronize this data with the server;</li>
-<li>Perform the survey in the <strong>0WM Client</strong>: connect to
-both the server and the AP, select your floorplan, walk around your
-surveying area and perform Wi-Fi measurements.</li>
+<li>Upload your floorplan in 0WM OpMode and fill in the necessary
+information;</li>
+<li>Perform the survey in 0WM Client by navigating in your building and
+taking measurements;</li>
+<li>Review your survey in 0WM OpMode (feature not yet available).</li>
 </ol>
-<h1 id="running-the-client">Running the client</h1>
-<p>Testing the 0WM client requires specific network and browser
-configurations depending on your environment. Please see the detailed <a
-href="client.html">client guide</a> for complete instructions and
-configuration examples.</p></main>
+<p>You can find more information on how to use all the 0WM components in
+<a href="guides.html">our dedicated page</a></p></main>
 </body>
 </html>

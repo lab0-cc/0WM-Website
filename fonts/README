@@ -1,0 +1,6 @@
+This directory contains two font families, patched for 0WM:
+- Noto Sans (`NotoSans-0WM-Regular.woff2` and `NotoSans-0WM-Italic.woff2`), licensed under the terms laid out in `OFL-NotoSans.txt`,
+- Roboto Mono (`RobotoMono-0WM-Regular.woff2` and `RobotoMono-0WM-Italic.woff2`), licensed under the terms laid out in `OFL-RobotoMono.txt`.
+
+Noto Sans is patched with `pyftfeatfreeze` to use the `zero` variant.
+Both fonts are patched with `pyftsubset` to only include characters within the ranges U+0000–0017F and U+2000–206F.

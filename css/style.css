@@ -1,4 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@font-face {
+  font-display: swap;
+  font-family: "Noto Sans";
+  font-style: normal;
+  src: url(/fonts/NotoSans-0WM-Regular.woff2) format(woff2);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Noto Sans";
+  font-style: italic;
+  src: url(/fonts/NotoSans-0WM-Italic.woff2) format(woff2);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  src: url(/fonts/RobotoMono-0WM-Regular.woff2) format(woff2);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Roboto Mono";
+  font-style: italic;
+  src: url(/fonts/RobotoMono-0WM-Italic.woff2) format(woff2);
+}
 
 html {
   background: #f8f8f8;
@@ -8,19 +34,62 @@ body {
   font-family: "Noto Sans", sans-serif;
   margin: 0;
   container: body / inline-size;
+  --accent-1: #04ab9e;
+  --accent-2: #2dabe3;
+  --accent-3: #e7267a;
+  --accent-4: #124257;
 }
 
 a {
-  color: #03d;
+  color: var(--accent-3);
   text-decoration: none;
 }
 
+h1, h2, h3, h4 {
+  font-weight: 300;
+}
+
+h1 {
+  color: var(--accent-1);
+  position: relative;
+  overflow: hidden;
+  font-style: italic;
+}
+
+h1::after {
+  content: "";
+  width: 100%;
+  background: var(--accent-1);
+  position: absolute;
+  height: 8px;
+  width: 100%;
+  bottom: 10px;
+  margin-left: 8px;
+  opacity: .15;
+}
+
+h2 {
+  color: var(--accent-2);
+}
+
+h3 {
+  color: var(--accent-3);
+}
+
+h4 {
+  text-decoration: underline dashed;
+}
+
 [id] {
-  scroll-margin-top: 85px;
+  scroll-margin-top: 71px;
 }
 
 p {
   margin: 16px 0;
+}
+
+strong {
+  font-weight: 600;
 }
 
 nav {
@@ -41,49 +110,99 @@ nav * {
   vertical-align: top;
 }
 
-nav > div {
-  margin-left: 30px;
+nav > ul {
+  margin: 0 0 0 30px;
+  padding: 0;
 }
 
-nav > div > a {
-  padding: 0 16px;
-  text-decoration: none;
-  color: #456;
-  background: #f1f5f9;
-  border-radius: 20px;
+nav > ul a, a.button {
+  color: #444;
+  background: #f6f6f6;
+  transition: .2s ease;
+  transition-property: color, background;
+}
+
+nav > ul > li {
   font-size: .9rem;
   font-weight: 500;
   white-space: nowrap;
-  transition: all .2s ease;
   line-height: 38px;
+  position: relative;
 }
 
-nav > div > a:not(:first-child) {
+nav > ul > li > a {
+  padding: 0 16px;
+  border-radius: 20px;
+  box-shadow: 0 1px 1px #0002;
+}
+
+nav > ul > li:not(:first-child) {
   margin-left: 10px;
 }
 
-nav > div > a:hover {
-  background: #e5eaf0;
-  color: #122;
+nav > ul a:hover, a.button:hover {
+  background: #eee;
+  color: #111;
+}
+
+nav > ul > li > ul {
+  padding: 0;
+  line-height: 34px;
+  height: auto;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  width: 100%;
+  display: none;
+  box-shadow: 0 1px 2px #0004;
+}
+
+nav > ul > li > ul * {
+  height: 36px;
+}
+
+nav > ul > li > ul > li {
+  display: block;
+}
+
+nav > ul > li > ul > li > a {
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+nav > ul > li.current > a {
+  box-shadow: inset 0 0 0 2px #0002;
+}
+
+nav > ul > li > ul > li.current > a {
+  box-shadow: inset 6px 0px #0002;
+}
+
+nav > ul > li.current-sub > a {
+  box-shadow: inset 0 -103px 0px -100px #0002;
 }
 
 aside.toc {
   position: fixed;
   top: 85px;
   background: #fff;
-  padding: 8px 12px;
+  padding: 8px 8px 8px 12px;
   font-size: .9rem;
   right: 20px;
+  overflow-x: hidden;
   overflow-y: auto;
   max-height: calc(100vh - 123px);
+  line-height: 20px;
+  color: var(--accent-4);
 }
 
 aside.toc > ul li::before {
   content: "";
   display: inline-block;
-  margin-right: 8px;
   margin-left: -8px;
-  border: 1px solid #037;
+  border: 1px solid;
+  vertical-align: top;
+  margin-top: 8px;
 }
 
 aside.toc > ul li::marker {
@@ -92,14 +211,11 @@ aside.toc > ul li::marker {
 }
 
 aside.toc > ul > li::before {
-  width: 7px;
-  height: 7px;
-  border-radius: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 4px;
   margin-bottom: 1px;
-}
-
-aside.toc a {
-  color: #037;
+  display: inline-block;
 }
 
 aside.toc > ul {
@@ -108,20 +224,44 @@ aside.toc > ul {
 }
 
 aside.toc > ul ul {
-  padding-left: 28px;
+  padding-left: 18px;
 }
 
 aside.toc > ul > li > ul > li::before {
-  width: 5px;
-  height: 5px;
-  margin-bottom: 2px;
+  width: 4px;
+  height: 4px;
   transform: rotate(45deg);
 }
 
 aside.toc > ul > li > ul > li > ul > li::before {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
   margin-bottom: 1px;
+}
+
+aside.toc li > a {
+  margin-left: 8px;
+  display: inline-block;
+  color: var(--accent-4);
+}
+
+aside.toc::before {
+  content: "";
+  position: absolute;
+  margin-top: max(0px, var(--viewport-start));
+  height: calc(var(--viewport-end) - max(0px, var(--viewport-start)));
+  width: calc(100% - 12px);
+  transition: all .1s ease;
+  left: 6px;
+  box-sizing: border-box;
+  border-left: 2px solid var(--accent-2);
+  background: #2dabe318;
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+aside.toc.hide-viewport::before {
+  display: none;
 }
 
 main {
@@ -129,10 +269,11 @@ main {
   width: 100%;
   text-align: center;
   background: #fff;
-  border-right: 1px solid #0002;
   box-sizing: content-box;
-  top: 65px;
+  top: 64px;
   position: absolute;
+  border: 1px solid #0002;
+  border-left: 0;
 }
 
 main > * {
@@ -144,9 +285,9 @@ main > :first-child {
   margin-top: 0;
 }
 
-code > span.comment {
+code span.co, code span.co > a {
   font-style: italic;
-  color: #04ab9e;
+  color: var(--accent-1);
 }
 
 code, pre {
@@ -154,32 +295,44 @@ code, pre {
   font-size: .9rem;
 }
 
-code a {
-  color: #e7267a;
+code span.an {
+  font-weight: 900;
+  user-select: none;
+  color: var(--accent-2);
+}
+
+code span.at {
+  font-weight: 700;
+}
+
+code span.va {
+  color: var(--accent-2);
+  font-weight: 600;
 }
 
 pre {
-  overflow-x: auto;
   border: 1px solid #0003;
   padding: 3px 6px;
-  border-radius: 10px;
+  border-radius: 0 10px 10px 10px;
   position: relative;
+  margin: 32px 0 8px 0;
 }
 
 pre::before {
-  content: attr(data-header);
+  content: attr(class);
   position: absolute;
-  right: 0;
-  border-left: 1px solid #0003;
-  border-bottom: 1px solid #0003;
-  padding: 3px 6px;
-  top: 0;
-  border-bottom-left-radius: 10px;
+  left: -1px;
+  padding: 0 6px;
+  top: -22px;
+  height: 20px;
+  border: 1px solid #0003;
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
 }
 
 code var {
   font-style: inherit;
-  color: #2dabe3;
+  color: var(--accent-2);
 }
 
 main > img {
@@ -223,10 +376,15 @@ h2 > a, h3 > a {
   width: 6px;
   height: 6px;
   display: inline-block;
-  border-top: 3px solid #555;
-  border-right: 3px solid #555;
-  margin-bottom: 4px;
+  border-top: 2px solid;
+  border-right: 2px solid;
   margin-left: 14px;
+  box-shadow: -4px 0 0 9px #fff;
+  color: inherit;
+}
+
+h2 > a {
+  margin-bottom: 4px;
 }
 
 h3 > a {
@@ -235,66 +393,136 @@ h3 > a {
 
 h2 > a::before, h3 > a::before {
   content: "";
-  width: 3px;
-  height: 11px;
-  background: #555;
+  height: 9px;
   transform: rotate(45deg);
   position: absolute;
   right: -2px;
-  top: -.5px;
+  top: -1px;
   transform-origin: top;
+  border: 1px solid;
 }
 
 h2 > a::after, h3 > a::after {
   content: "";
-  background: #0002;
   width: 17px;
   height: 17px;
   position: absolute;
   top: -6px;
   right: -6px;
   border-radius: 3px;
+  border: 1px solid;
+  box-sizing: border-box;
 }
 
 code {
-  background: #ddd;
+  background: #0001;
   border-radius: 3px;
-  padding: 1px 4px;
+  padding: 1px 5px;
 }
 
 pre code {
   background: revert;
   padding: 0;
+  overflow-x: auto;
+  display: block;
 }
 
-main > .note {
-  border-left: 4px solid #037;
+main > .note, main > .warn {
   padding: 4px 4px 4px 8px;
-  color: #037;
-  background: #eff6ff;
   border-radius: 3px;
   margin: 16px 0;
 }
 
-main > .note > p:first-child {
+main > .note > p:first-child, main > .warn > p:first-child {
   margin-top: 0;
 }
 
-main > .note > p:last-child {
+main > .note > p:last-child, main > .warn > p:last-child {
   margin-bottom: 0;
 }
 
-@container body (max-width: 1310px) {
-  aside.toc {
-    top: 75px;
-    right: 10px;
-    max-height: calc(100vh - 103px)
-  }
+main > .note {
+  background: #2dabe318;
+  border-left: 4px solid var(--accent-2);
+  color: var(--accent-4);
 }
 
-@container body (min-width: 1291px) {
+main > .warn {
+  background: #e7267a18;
+  border-left: 4px solid var(--accent-3);
+  color: #771540;
+}
+
+a.button {
+  padding: 8px 10px;
+  border-radius: 100px;
+  box-shadow: 0 1px 1px #0002
+}
+
+a.button:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+a.button:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 1px solid #0001;
+}
+
+p.buttons {
+  text-align: center;
+}
+
+a.button:first-child {
+  padding-left: 14px;
+}
+
+a.button:last-child {
+  padding-right: 14px;
+}
+
+table th {
+  font-weight: 600;
+}
+table {
+  border-spacing: 0px;
+  margin: 0 auto;
+}
+table th {
+  padding: 4px 12px;
+  text-align: center;
+}
+table td {
+  border-top: 1px solid #bbb;
+  padding: 4px 8px;
+  border-left: 1px solid #bbb;
+}
+table td:last-of-type {
+  border-right: 1px solid #bbb;
+}
+table tr:first-child > td:first-of-type {
+  border-top-left-radius: 6px;
+}
+table tr:first-child > td:last-of-type {
+  border-top-right-radius: 6px;
+}
+table tr:last-child > td:first-of-type {
+  border-bottom-left-radius: 6px;
+}
+table tr:last-child > td:last-of-type {
+  border-bottom-right-radius: 6px;
+}
+table tr:last-child > td {
+  border-bottom: 1px solid #bbb;
+}
+table > tbody > tr:nth-child(even) > td {
+  background: #00000009;
+}
+
+@container body (min-width: 1290.01px) {
   aside.toc {
-    max-width: 174px;
+    width: 158px;
     border-radius: 12px;
     border: 1px solid #0002;
   }
@@ -306,7 +534,6 @@ main > .note > p:last-child {
     border-bottom: 1px solid #0002;
     right: 0;
     left: 1071px;
-    padding: 8px;
     max-height: calc(100vh - 81px);
   }
 }
@@ -321,7 +548,7 @@ main > .note > p:last-child {
   }
 }
 
-@container body (min-width: 1241px) {
+@container body (min-width: 1240.01px) {
   main {
     max-width: 1000px;
   }
@@ -350,13 +577,34 @@ main > .note > p:last-child {
   }
 }
 
+@container body (min-width: 650.01px) {
+  nav > ul > li.menu > a::after {
+    content: "";
+    border: 4px solid transparent;
+    border-top: 5px solid;
+    display: inline-block;
+    margin-left: 6px;
+    position: relative;
+    top: 2px;
+  }
+
+  nav > ul > li.menu:hover > a {
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 1px 2px #0004;
+  }
+
+  nav > ul > li:hover > ul {
+    display: block;
+  }
+}
+
 @container body (max-width: 650px) {
   [id] {
     scroll-margin-top: 130px;
   }
 
   nav {
-    padding: 12px;
+    padding: 10px;
     text-align: center;
   }
 
@@ -364,15 +612,15 @@ main > .note > p:last-child {
     margin-bottom: 10px;
   }
 
-  nav > div {
+  nav > ul {
     display: block;
     margin: 0;
-    height: auto;
+    height: 41px;
     overflow: auto;
     white-space: nowrap;
   }
 
   main {
-    top: 115px;
+    top: 112px;
   }
 }

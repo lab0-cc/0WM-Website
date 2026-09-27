@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0WM — AP installation guide</title>
+<link rel="icon" href="/img/0wm.svg">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav><a href="/"><img src="/img/0wm.svg"></a><ul><li class="menu current-sub"><a href="/install.html">Installation guides</a><ul><li><a href="/install-server.html">Server</a></li><li><a href="/install-opmode.html">OpMode</a></li><li><a href="/install-client.html">Client</a></li><li class="current"><a href="/install-ap.html">AP</a></li></ul></li><li class="menu"><a href="/guides.html">User guides</a><ul><li><a href="/guide-server.html">Server</a></li><li><a href="/guide-opmode.html">OpMode</a></li><li><a href="/guide-client.html">Client</a></li></ul></li><li><a href="https://github.com/lab0-cc">GitHub organization</a></li></ul></nav>
+<aside class="toc">
+  <ul>
+  <li><a href="#introduction"
+  id="toc-introduction">Introduction</a></li>
+  <li><a href="#ap-installation" id="toc-ap-installation">AP
+  installation</a>
+  <ul>
+  <li><a href="#on-openwrt" id="toc-on-openwrt">On OpenWRT</a></li>
+  <li><a href="#on-a-computer" id="toc-on-a-computer">On a
+  computer</a></li>
+  </ul></li>
+  </ul>
+</aside>
+<script src="/js/toc.js"></script>
+<main><h1 id="introduction">Introduction</h1>
+<p>0WM collects measurements from access points connected to mobile
+devices. For those access points to be able to report the necessary
+data, they require special configuration. A typical 0WM access point
+acts as an Ethernet switch advertising its Unique Local Address (ULA) as
+a gateway and its name (usually <code>ap</code>) as a Multicast DNS
+record (usually <code>ap.local</code>).</p>
+<h1 id="ap-installation">AP installation</h1>
+<p>We support two ways of setting up access points:</p>
+<ul>
+<li><a href="#on-openwrt">On a physical access point</a> running
+OpenWRT;</li>
+<li><a href="#on-a-computer">On a computer</a>, for testing purposes
+only.</li>
+</ul>
+<h2 id="on-openwrt">On OpenWRT<a
+href="https://github.com/lab0-cc/0WM-AP-OpenWRT" target="_blank"
+rel="noopener noreferrer"></a></h2>
+<p>This assumes that you have correctly flashed your access point with
+OpenWRT and a web server runs scripts under <code>/www/cgi-bin</code>
+(this is the case with OpenWRT images shipping LuCI). You have to copy
+all the files in the <a href="https://github.com/lab0-cc/0WM-AP-OpenWRT"
+target="_blank" rel="noopener noreferrer">0WM-AP-OpenWRT repository</a>
+to the root of your access point:</p>
+<ul>
+<li><code>etc/config/dhcp</code> goes into <code>/etc/config/dhcp</code>
+and is loaded with <code>service odhcpd restart</code>. It is
+responsible for setting up the wired interface (assuming it is called
+<code>lan</code>) of the AP.</li>
+<li><code>etc/mDNSResponder.conf</code> goes into
+<code>/etc/mDNSResponder.conf</code>. It is responsible for setting up
+the mDNS responder to advertise the AP’s host name.</li>
+<li>Scripts under <code>www/cgi-bin</code> go into
+<code>/www/cgi-bin</code> and must be made executable. They are
+responsible for transmitting scan data to 0WM.</li>
+</ul>
+<h2 id="on-a-computer">On a computer<a
+href="https://github.com/lab0-cc/0WM-AP-Mock" target="_blank"
+rel="noopener noreferrer"></a></h2>
+<p>For debugging and development purposes, we provide a very simple mock
+AP emulating results fetched from a live Zyxel NWA50AX. See the <a
+href="https://github.com/lab0-cc/0WM-AP-Mock" target="_blank"
+rel="noopener noreferrer">0WM-AP-Mock repository</a> for details on how
+to run it.</p></main>
+</body>
+</html>

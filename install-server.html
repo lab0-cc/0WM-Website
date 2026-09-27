@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>0WM — Server installation guide</title>
+<link rel="icon" href="/img/0wm.svg">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav><a href="/"><img src="/img/0wm.svg"></a><ul><li class="menu current-sub"><a href="/install.html">Installation guides</a><ul><li class="current"><a href="/install-server.html">Server</a></li><li><a href="/install-opmode.html">OpMode</a></li><li><a href="/install-client.html">Client</a></li><li><a href="/install-ap.html">AP</a></li></ul></li><li class="menu"><a href="/guides.html">User guides</a><ul><li><a href="/guide-server.html">Server</a></li><li><a href="/guide-opmode.html">OpMode</a></li><li><a href="/guide-client.html">Client</a></li></ul></li><li><a href="https://github.com/lab0-cc">GitHub organization</a></li></ul></nav>
+<aside class="toc">
+  <ul>
+  <li><a href="#introduction"
+  id="toc-introduction">Introduction</a></li>
+  <li><a href="#server-installation" id="toc-server-installation">Server
+  installation</a>
+  <ul>
+  <li><a href="#using-nightly-debian-packages"
+  id="toc-using-nightly-debian-packages">Using nightly Debian
+  packages</a></li>
+  <li><a href="#from-sources" id="toc-from-sources">From sources</a>
+  <ul>
+  <li><a href="#using-nix" id="toc-using-nix">Using Nix</a></li>
+  <li><a href="#manually" id="toc-manually">Manually</a></li>
+  <li><a href="#environment" id="toc-environment">Environment</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</aside>
+<script src="/js/toc.js"></script>
+<main><h1 id="introduction">Introduction</h1>
+<p>0WM server is the central backend for 0WM. It receives scans from the
+client and floorplan data from the operator interface and processes them
+to generate coverage heatmaps. The project is not officially released,
+therefore its distribution channels are rather scarce at the moment.
+That being said, we offer several ways to try it out in the
+meantime.</p>
+<h1 id="server-installation">Server installation</h1>
+<p>We support two ways of installing the 0WM server:</p>
+<ul>
+<li>With one of our <a href="#using-nightly-debian-packages">nightly
+Debian packages</a>;</li>
+<li>By <a href="#from-sources">compiling its sources</a> directly.</li>
+</ul>
+<h2 id="using-nightly-debian-packages">Using nightly Debian
+packages</h2>
+<p>The easiest way to install the server is through the nightly Debian
+packages we provide. Currently, we package 0WM Server for the following
+distributions and architectures:</p>
+<table>
+<thead>
+<tr>
+<th>Distribution</th>
+<th>Suites</th>
+<th>Architectures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Debian</td>
+<td>bookworm, trixie, forky</td>
+<td>amd64, arm64</td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td>jammy, noble</td>
+<td>amd64, arm64</td>
+</tr>
+</tbody>
+</table>
+<p>Our nightly Debian packages are available in the <a
+href="https://github.com/lab0-cc/0WM-Server/releases/tag/nightly-deb"
+target="_blank" rel="noopener noreferrer"><code>nightly-deb</code>
+release page on GitHub</a> and updated every day following a code
+change.</p>
+<p>The Debian packages install a <code>0wm-server</code> service
+managing the 0WM server daemon.</p>
+<h2 id="from-sources">From sources</h2>
+<p>If Debian is not your environment of choice or you want to contribute
+to the project’s code, 0WM Server can be built from its sources.</p>
+<h3 id="using-nix">Using Nix</h3>
+<div class="note">
+<p>Before starting using Nix, make sure that the
+<code>nix-command</code> and <code>flakes</code> experimental features
+are enabled in your Nix configuration. This can be done by setting
+<code>experimental-features = nix-command flakes</code> in
+<code>~/.config/nix/nix.conf</code> (after creating the necessary
+directory and file, if missing).</p>
+</div>
+<p>0WM Server can then be built either from within its cloned Git
+repository with:</p>
+<div id="cb1"><pre
+class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">git</span> clone <a href="https://github.com/lab0-cc/0WM-Server.git">https://github.com/lab0-cc/0WM-Server.git</a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="bu">cd</span> 0WM-Server</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">nix</span> build</span></code></pre></div>
+<p>or directly with:</p>
+<div id="cb1"><pre
+class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">nix</span> build github:lab0-cc/0WM-Server</span></code></pre></div>
+<p><code>-L</code> can be passed to <code>nix build</code> to print all
+the build logs to the standard error. A development environment can be
+entered with <code>nix develop</code>.</p>
+<p>The 0WM server daemon can then be started by running the resulting
+<code>0wmd</code> binary.</p>
+<p>The server is tested daily with a Nix development environment on the
+following operating systems and architectures:</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Architectures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS 26</td>
+<td>arm64</td>
+</tr>
+<tr>
+<td>Ubuntu 24.04</td>
+<td>amd64, arm64</td>
+</tr>
+</tbody>
+</table>
+<h3 id="manually">Manually</h3>
+<p>0WM Server is written in OCaml. We rely on OPAM, the OCaml package
+manager, and Dune, a popular build system. Some of 0WM Server’s
+dependencies are pinned from Git repositories because upstream’s code
+either has not yet been made available on OPAM, or required bespoke
+patching on our end. To improve the server’s performance, we recommend
+using the <code>flambda</code> flavor of the OCaml compiler.</p>
+<h4 id="prerequisites">Prerequisites</h4>
+<ul>
+<li>OCaml (5+)</li>
+<li>Opam</li>
+<li>Git</li>
+</ul>
+<h4 id="installing-dependencies">Installing dependencies</h4>
+<div id="cb1"><pre
+class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize OPAM if you haven’t already</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> init <span class="at">--compiler</span><span class="op">=</span>ocaml-option-flambda <span class="at">--shell-setup</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="bu">eval</span> <span class="va">$(</span><span class="ex">opam</span> env<span class="va">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Pin development dependencies</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://github.com/bensmrs/gluten.git#668d961cf6edafecfd130b9b6b0ab01c3d2a4242">https://github.com/bensmrs/gluten.git#668d961cf6edafecfd130b9b6b0ab01c3d2a4242</a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://github.com/camlworks/dream.git#4718cb47264178d6d2181e0fcc2e8a8ff2170b5a">https://github.com/camlworks/dream.git#4718cb47264178d6d2181e0fcc2e8a8ff2170b5a</a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://github.com/mirage/irmin.git#7a09a06fff67bc4981faca36a332c51fc16e819e">https://github.com/mirage/irmin.git#7a09a06fff67bc4981faca36a332c51fc16e819e</a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://gitlab.com/camlspotter/camlimages.git#ef4caba407b738e98763001a4c85b3a5db19a739">https://gitlab.com/camlspotter/camlimages.git#ef4caba407b738e98763001a4c85b3a5db19a739</a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment this on macOS</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># opam pin add --no-action --yes git+<a href="https://github.com/jetjinser/ocaml-cf.git#92099f5918ce0a32633d4030660943504f33cc86">https://github.com/jetjinser/ocaml-cf.git#92099f5918ce0a32633d4030660943504f33cc86</a></span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Clone and install dependencies</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">git</span> clone <a href="https://github.com/lab0-cc/0WM-Server.git">https://github.com/lab0-cc/0WM-Server.git</a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="bu">cd</span> 0WM-Server</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> install <span class="at">--confirm-level</span><span class="op">=</span>unsafe-yes <span class="at">--deps-only</span> .</span></code></pre></div>
+<h4 id="compiling-and-running">Compiling and running</h4>
+<p>From there, compiling the server is a matter of running:</p>
+<div id="cb1"><pre
+class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">dune</span> build</span></code></pre></div>
+<p>The 0WM server daemon can then be started by running:</p>
+<div id="cb1"><pre
+class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">dune</span> exec src/zwmd.exe</span></code></pre></div>
+<h3 id="environment">Environment</h3>
+<p>0WM Server’s daemon obeys the following environment variables, which
+can be used to preconfigure the server:</p>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NOTIFY_SOCKET</code></td>
+<td>Systemd notify socket (to be set by systemd)</td>
+</tr>
+<tr>
+<td><code>ZWM_RUN</code> / <code>RUNTIME_DIRECTORY</code></td>
+<td>Volatile runtime data storage</td>
+</tr>
+<tr>
+<td><code>ZWM_SHARE</code></td>
+<td>Persistent static data storage</td>
+</tr>
+<tr>
+<td><code>ZWM_SPOOL</code></td>
+<td>Internal data injection spool (internal use only)</td>
+</tr>
+<tr>
+<td><code>ZWM_VAR</code> / <code>STATE_DIRECTORY</code></td>
+<td>Persistent dynamic data storage</td>
+</tr>
+</tbody>
+</table></main>
+</body>
+</html>
