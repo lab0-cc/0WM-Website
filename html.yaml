@@ -9,3 +9,5 @@ filters:
   - lua/code-links.lua
   - lua/morph-href.lua
   - lua/target-blank.lua
+syntax-definitions:
+  - xml/terminal.xml

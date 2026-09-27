@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="terminal" version="1" kateversion="5.0" author="Benjamin Somers" license="MIT">
+  <highlighting>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+        <StringDetect String="&gt; " column="0" attribute="Prompt" context="Command"/>
+        <DetectChar char="#" column="0" lookAhead="true" context="Command"/>
+      </context>
+      <context name="Command" attribute="Normal Text" lineEndContext="#pop" fallthroughContext="Command##Bash">
+        <IncludeRules context="##Bash" includeAttrib="true"/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Prompt" defStyleNum="dsAnnotation"/>
+    </itemDatas>
+  </highlighting>
+</language>
