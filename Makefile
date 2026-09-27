@@ -7,7 +7,9 @@ build:
 	mkdir -p .dist
 	for file in ./*.md; do pandoc "$$file" -d html -o ".dist/$${file%md}html"; done
 	cp -R css .dist
+	cp -R fonts .dist
 	cp -R img .dist
+	cp -R js .dist
 
 dist: build
 	git worktree remove -f .deploy || true
