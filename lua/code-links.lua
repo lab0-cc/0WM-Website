@@ -1,3 +1,5 @@
+local cb_id = 0
+
 local function trim_punctuation(url)
   local trailing = ""
   while #url > 0 do
@@ -45,6 +47,11 @@ end
 function CodeBlock(block)
   local opts = pandoc.WriterOptions(PANDOC_WRITER_OPTIONS)
   opts.template = pandoc.template.compile("$body$")
+  if block.identifier == "" then
+    cb_id = cb_id + 1
+    block.identifier = "cb" .. cb_id
+  end
+
   local html = pandoc.write(pandoc.Pandoc { block }, "html5", opts)
   html = linkify_html(html)
   return pandoc.RawBlock("html", html)
