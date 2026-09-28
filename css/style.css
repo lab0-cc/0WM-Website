@@ -285,6 +285,10 @@ main > :first-child {
   margin-top: 0;
 }
 
+main > :last-child {
+  margin-bottom: 0;
+}
+
 code span.co, code span.co > a {
   font-style: italic;
   color: var(--accent-1);
@@ -470,7 +474,7 @@ a.button:not(:first-child) {
   border-left: 1px solid #0001;
 }
 
-p.buttons {
+.center {
   text-align: center;
 }
 

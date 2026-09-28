@@ -40,25 +40,33 @@ To setup 0WM on a production environment, you need:
 
 The 0WM Server is the central backend of 0WM, handling all its core logic. It manages floorplans and Wi-Fi measurement sessions, stores the data, and exposes REST and WebSocket APIs used by the project’s frontends.
 
-<p class="buttons">[Installation guide](install-server.md){.button}[User guide](guide-server.md){.button}</p>
+::: center
+[Installation guide](install-server.md){.button}[User guide](guide-server.md){.button}
+:::
 
 ### 0WM OpMode[](https://github.com/lab0-cc/0WM-OpMode) {#zwm-opmode}
 
 The 0WM Opmode is an operator dashboard frontend that communicates with the server to upload floorplans, edit boundaries, and position them on a map with precise georeferencing.
 
-<p class="buttons">[Installation guide](install-opmode.md){.button}[User guide](guide-opmode.md){.button}</p>
+::: center
+[Installation guide](install-opmode.md){.button}[User guide](guide-opmode.md){.button}
+:::
 
 ### 0WM Client[](https://github.com/lab0-cc/0WM-Client) {#zwm-client}
 
 The 0WM Client is a mobile frontend that allows you to perform real-time Wi-Fi surveys. It fetches floorplans from the server, retrieves Wi-Fi scan data from an access point, uses WebXR to track position and movement, and streams measurements back to the server in real-time.
 
-<p class="buttons">[Installation guide](install-client.md){.button}[User guide](guide-client.md){.button}</p>
+::: center
+[Installation guide](install-client.md){.button}[User guide](guide-client.md){.button}
+:::
 
 ### 0WM AP {#zwm-ap}
 
 Unlike the other 0WM software components, this one is more of a collection of tools and settings to configure compatible access points (currently those running OpenWRT).
 
-<p class="buttons">[Installation guide](install-ap.md){.button}</p>
+::: center
+[Installation guide](install-ap.md){.button}
+:::
 
 ## Your first survey
 
@@ -69,3 +77,15 @@ Once the software components are [configured and running](install.md) in your en
 3. Review your survey in 0WM OpMode (feature not yet available).
 
 You can find more information on how to use all the 0WM components in [our dedicated page](guides.md)
+
+# About the project
+
+0WM is a solo project led by [Benjamin Somers](https://bensmrs.fr), distributed under the MIT license. Its backend is written in OCaml and its frontend in vanilla JavaScript.
+
+All of our source code and artifacts are available [on GitHub](https://github.com/lab0-cc). There are currently no contribution guidelines; please reach out through a new issue on the relevant repository if you intend to work on a feature or would like to see one appear.
+
+This project is funded through [NGI Zero Core](https://nlnet.nl/core), a fund established by [NLnet](https://nlnet.nl) with financial support from the European Commission's [Next Generation Internet](https://ngi.eu) program. Learn more at the [NLnet project page](https://nlnet.nl/project/0WM).
+
+::: center
+[![NLnet Foundation logo](https://nlnet.nl/logo/banner.png){width=20% style=margin-right:1em}](https://nlnet.nl)[![NGI Zero logo](https://nlnet.nl/image/logos/NGI0_tag.svg){width=20%}](https://nlnet.nl/core)
+:::
