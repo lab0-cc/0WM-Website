@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<nav><a href="/"><img src="/img/0wm.svg"></a><ul><li class="menu"><a href="/install.html">Installation guides</a><ul><li><a href="/install-server.html">Server</a></li><li><a href="/install-opmode.html">OpMode</a></li><li><a href="/install-client.html">Client</a></li><li><a href="/install-ap.html">AP</a></li></ul></li><li class="menu"><a href="/guides.html">User guides</a><ul><li><a href="/guide-server.html">Server</a></li><li><a href="/guide-opmode.html">OpMode</a></li><li><a href="/guide-client.html">Client</a></li></ul></li><li><a href="https://github.com/lab0-cc">GitHub organization</a></li></ul></nav>
+<nav><a href="/"><img src="/img/0wm.svg" alt="0WM logo"></a><ul><li class="menu"><a href="/install.html">Installation guides</a><ul><li><a href="/install-server.html">Server</a></li><li><a href="/install-opmode.html">OpMode</a></li><li><a href="/install-client.html">Client</a></li><li><a href="/install-ap.html">AP</a></li></ul></li><li class="menu"><a href="/guides.html">User guides</a><ul><li><a href="/guide-server.html">Server</a></li><li><a href="/guide-opmode.html">OpMode</a></li><li><a href="/guide-client.html">Client</a></li></ul></li><li><a href="https://github.com/lab0-cc">GitHub organization</a></li></ul></nav>
 <aside class="toc">
   <ul>
   <li><a href="#introduction"
@@ -28,6 +28,8 @@
   <li><a href="#your-first-survey" id="toc-your-first-survey">Your first
   survey</a></li>
   </ul></li>
+  <li><a href="#about-the-project" id="toc-about-the-project">About the
+  project</a></li>
   </ul>
 </aside>
 <script src="/js/toc.js"></script>
@@ -85,20 +87,20 @@ rel="noopener noreferrer"></a></h3>
 logic. It manages floorplans and Wi-Fi measurement sessions, stores the
 data, and exposes REST and WebSocket APIs used by the project’s
 frontends.</p>
-<p class="buttons">
-<a href="install-server.html" class="button">Installation guide</a><a
-href="guide-server.html" class="button">User guide</a>
-</p>
+<div class="center">
+<p><a href="install-server.html" class="button">Installation guide</a><a
+href="guide-server.html" class="button">User guide</a></p>
+</div>
 <h3 id="zwm-opmode">0WM OpMode<a
 href="https://github.com/lab0-cc/0WM-OpMode" target="_blank"
 rel="noopener noreferrer"></a></h3>
 <p>The 0WM Opmode is an operator dashboard frontend that communicates
 with the server to upload floorplans, edit boundaries, and position them
 on a map with precise georeferencing.</p>
-<p class="buttons">
-<a href="install-opmode.html" class="button">Installation guide</a><a
-href="guide-opmode.html" class="button">User guide</a>
-</p>
+<div class="center">
+<p><a href="install-opmode.html" class="button">Installation guide</a><a
+href="guide-opmode.html" class="button">User guide</a></p>
+</div>
 <h3 id="zwm-client">0WM Client<a
 href="https://github.com/lab0-cc/0WM-Client" target="_blank"
 rel="noopener noreferrer"></a></h3>
@@ -107,17 +109,17 @@ real-time Wi-Fi surveys. It fetches floorplans from the server,
 retrieves Wi-Fi scan data from an access point, uses WebXR to track
 position and movement, and streams measurements back to the server in
 real-time.</p>
-<p class="buttons">
-<a href="install-client.html" class="button">Installation guide</a><a
-href="guide-client.html" class="button">User guide</a>
-</p>
+<div class="center">
+<p><a href="install-client.html" class="button">Installation guide</a><a
+href="guide-client.html" class="button">User guide</a></p>
+</div>
 <h3 id="zwm-ap">0WM AP</h3>
 <p>Unlike the other 0WM software components, this one is more of a
 collection of tools and settings to configure compatible access points
 (currently those running OpenWRT).</p>
-<p class="buttons">
-<a href="install-ap.html" class="button">Installation guide</a>
-</p>
+<div class="center">
+<p><a href="install-ap.html" class="button">Installation guide</a></p>
+</div>
 <h2 id="your-first-survey">Your first survey</h2>
 <p>Once the software components are <a href="install.html">configured
 and running</a> in your environment, a typical survey workflow operates
@@ -130,6 +132,34 @@ taking measurements;</li>
 <li>Review your survey in 0WM OpMode (feature not yet available).</li>
 </ol>
 <p>You can find more information on how to use all the 0WM components in
-<a href="guides.html">our dedicated page</a></p></main>
+<a href="guides.html">our dedicated page</a></p>
+<h1 id="about-the-project">About the project</h1>
+<p>0WM is a solo project led by <a href="https://bensmrs.fr"
+target="_blank" rel="noopener noreferrer">Benjamin Somers</a>,
+distributed under the MIT license. Its backend is written in OCaml and
+its frontend in vanilla JavaScript.</p>
+<p>All of our source code and artifacts are available <a
+href="https://github.com/lab0-cc" target="_blank"
+rel="noopener noreferrer">on GitHub</a>. There are currently no
+contribution guidelines; please reach out through a new issue on the
+relevant repository if you intend to work on a feature or would like to
+see one appear.</p>
+<p>This project is funded through <a href="https://nlnet.nl/core"
+target="_blank" rel="noopener noreferrer">NGI Zero Core</a>, a fund
+established by <a href="https://nlnet.nl" target="_blank"
+rel="noopener noreferrer">NLnet</a> with financial support from the
+European Commission’s <a href="https://ngi.eu" target="_blank"
+rel="noopener noreferrer">Next Generation Internet</a> program. Learn
+more at the <a href="https://nlnet.nl/project/0WM" target="_blank"
+rel="noopener noreferrer">NLnet project page</a>.</p>
+<div class="center">
+<p><a href="https://nlnet.nl" target="_blank"
+rel="noopener noreferrer"><img src="https://nlnet.nl/logo/banner.png"
+style="margin-right:1em;width:20.0%"
+alt="NLnet Foundation logo" /></a><a href="https://nlnet.nl/core"
+target="_blank" rel="noopener noreferrer"><img
+src="https://nlnet.nl/image/logos/NGI0_tag.svg" style="width:20.0%"
+alt="NGI Zero logo" /></a></p>
+</div></main>
 </body>
 </html>
