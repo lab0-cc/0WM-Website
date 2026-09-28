@@ -92,14 +92,14 @@ class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-h
 <h2 id="manually">Manually</h2>
 <p>If Debian is not your environment of choice or you want to contribute
 to the project’s code, 0WM Client can be fetched with:</p>
-<div id="cb1"><pre
-class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">git</span> clone <span class="at">--recursive</span> <a href="https://github.com/lab0-cc/0WM-Client.git">https://github.com/lab0-cc/0WM-Client.git</a></span></code></pre></div>
+<div id="cb2"><pre
+class="terminal"><code class="terminal"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">git</span> clone <span class="at">--recursive</span> <a href="https://github.com/lab0-cc/0WM-Client.git">https://github.com/lab0-cc/0WM-Client.git</a></span></code></pre></div>
 <p>The only static files needed are <code>index.html</code> and the
 files located in the <code>css</code>, <code>fonts</code> and
 <code>js</code> directories. They can be copied to the directory of your
 choice, say <code>$MY_DIR</code>, with:</p>
-<div id="cb1"><pre
-class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">cp</span> <span class="at">-rL</span> css fonts js index.html <span class="va">$MY_DIR</span></span></code></pre></div>
+<div id="cb3"><pre
+class="terminal"><code class="terminal"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">cp</span> <span class="at">-rL</span> css fonts js index.html <span class="va">$MY_DIR</span></span></code></pre></div>
 <p>To work properly, 0WM OpMode requires a <code>config.json</code> file
 at its root telling the web page how to contact 0WM Server’s API.
 Assuming the API is reachable at <code>http://my-api:8080</code>,
@@ -171,12 +171,12 @@ you through the rooting process, it assumes
 <code>/data/adb/service.d</code> to be a valid location to place startup
 scripts, like on a working Magisk installation. Here is how to setup the
 0WM startup script:</p>
-<div id="cb1"><pre
-class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">wget</span> <a href="https://raw.githubusercontent.com/lab0-cc/0WM-Android/refs/heads/main/0wm.sh">https://raw.githubusercontent.com/lab0-cc/0WM-Android/refs/heads/main/0wm.sh</a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">adb</span> push 0wm.sh /data/local/tmp/0wm.sh</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">adb</span> shell su <span class="at">-c</span> <span class="st">&quot;mv /data/local/tmp/0wm.sh /data/adb/service.d/0wm.sh&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">adb</span> shell su <span class="at">-c</span> <span class="st">&quot;chown root:root /data/adb/service.d/0wm.sh&quot;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">adb</span> shell su <span class="at">-c</span> <span class="st">&quot;chmod 750 /data/adb/service.d/0wm.sh&quot;</span></span></code></pre></div>
+<div id="cb4"><pre
+class="terminal"><code class="terminal"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">wget</span> <a href="https://raw.githubusercontent.com/lab0-cc/0WM-Android/refs/heads/main/0wm.sh">https://raw.githubusercontent.com/lab0-cc/0WM-Android/refs/heads/main/0wm.sh</a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">adb</span> push 0wm.sh /data/local/tmp/0wm.sh</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">adb</span> shell su <span class="at">-c</span> <span class="st">&quot;mv /data/local/tmp/0wm.sh /data/adb/service.d/0wm.sh&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">adb</span> shell su <span class="at">-c</span> <span class="st">&quot;chown root:root /data/adb/service.d/0wm.sh&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">adb</span> shell su <span class="at">-c</span> <span class="st">&quot;chmod 750 /data/adb/service.d/0wm.sh&quot;</span></span></code></pre></div>
 <div class="note">
 <p>You may want to patch <code>0wm.sh</code> depending on the name of
 your wired interface. The <code>IFACE</code> variable is set to

@@ -95,8 +95,8 @@ class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-h
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="bu">cd</span> 0WM-Server</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">nix</span> build</span></code></pre></div>
 <p>or directly with:</p>
-<div id="cb1"><pre
-class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">nix</span> build github:lab0-cc/0WM-Server</span></code></pre></div>
+<div id="cb2"><pre
+class="terminal"><code class="terminal"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">nix</span> build github:lab0-cc/0WM-Server</span></code></pre></div>
 <p><code>-L</code> can be passed to <code>nix build</code> to print all
 the build logs to the standard error. A development environment can be
 entered with <code>nix develop</code>.</p>
@@ -136,30 +136,30 @@ using the <code>flambda</code> flavor of the OCaml compiler.</p>
 <li>Git</li>
 </ul>
 <h4 id="installing-dependencies">Installing dependencies</h4>
-<div id="cb1"><pre
-class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize OPAM if you haven’t already</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> init <span class="at">--compiler</span><span class="op">=</span>ocaml-option-flambda <span class="at">--shell-setup</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="bu">eval</span> <span class="va">$(</span><span class="ex">opam</span> env<span class="va">)</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Pin development dependencies</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://github.com/bensmrs/gluten.git#668d961cf6edafecfd130b9b6b0ab01c3d2a4242">https://github.com/bensmrs/gluten.git#668d961cf6edafecfd130b9b6b0ab01c3d2a4242</a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://github.com/camlworks/dream.git#4718cb47264178d6d2181e0fcc2e8a8ff2170b5a">https://github.com/camlworks/dream.git#4718cb47264178d6d2181e0fcc2e8a8ff2170b5a</a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://github.com/mirage/irmin.git#7a09a06fff67bc4981faca36a332c51fc16e819e">https://github.com/mirage/irmin.git#7a09a06fff67bc4981faca36a332c51fc16e819e</a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://gitlab.com/camlspotter/camlimages.git#ef4caba407b738e98763001a4c85b3a5db19a739">https://gitlab.com/camlspotter/camlimages.git#ef4caba407b738e98763001a4c85b3a5db19a739</a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment this on macOS</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># opam pin add --no-action --yes git+<a href="https://github.com/jetjinser/ocaml-cf.git#92099f5918ce0a32633d4030660943504f33cc86">https://github.com/jetjinser/ocaml-cf.git#92099f5918ce0a32633d4030660943504f33cc86</a></span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Clone and install dependencies</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">git</span> clone <a href="https://github.com/lab0-cc/0WM-Server.git">https://github.com/lab0-cc/0WM-Server.git</a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="bu">cd</span> 0WM-Server</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> install <span class="at">--confirm-level</span><span class="op">=</span>unsafe-yes <span class="at">--deps-only</span> .</span></code></pre></div>
+<div id="cb3"><pre
+class="terminal"><code class="terminal"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize OPAM if you haven’t already</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> init <span class="at">--compiler</span><span class="op">=</span>ocaml-option-flambda <span class="at">--shell-setup</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="bu">eval</span> <span class="va">$(</span><span class="ex">opam</span> env<span class="va">)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Pin development dependencies</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://github.com/bensmrs/gluten.git#668d961cf6edafecfd130b9b6b0ab01c3d2a4242">https://github.com/bensmrs/gluten.git#668d961cf6edafecfd130b9b6b0ab01c3d2a4242</a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://github.com/camlworks/dream.git#4718cb47264178d6d2181e0fcc2e8a8ff2170b5a">https://github.com/camlworks/dream.git#4718cb47264178d6d2181e0fcc2e8a8ff2170b5a</a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://github.com/mirage/irmin.git#7a09a06fff67bc4981faca36a332c51fc16e819e">https://github.com/mirage/irmin.git#7a09a06fff67bc4981faca36a332c51fc16e819e</a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> pin add <span class="at">--no-action</span> <span class="at">--yes</span> git+<a href="https://gitlab.com/camlspotter/camlimages.git#ef4caba407b738e98763001a4c85b3a5db19a739">https://gitlab.com/camlspotter/camlimages.git#ef4caba407b738e98763001a4c85b3a5db19a739</a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment this on macOS</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># opam pin add --no-action --yes git+<a href="https://github.com/jetjinser/ocaml-cf.git#92099f5918ce0a32633d4030660943504f33cc86">https://github.com/jetjinser/ocaml-cf.git#92099f5918ce0a32633d4030660943504f33cc86</a></span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Clone and install dependencies</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="fu">git</span> clone <a href="https://github.com/lab0-cc/0WM-Server.git">https://github.com/lab0-cc/0WM-Server.git</a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="bu">cd</span> 0WM-Server</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">opam</span> install <span class="at">--confirm-level</span><span class="op">=</span>unsafe-yes <span class="at">--deps-only</span> .</span></code></pre></div>
 <h4 id="compiling-and-running">Compiling and running</h4>
 <p>From there, compiling the server is a matter of running:</p>
-<div id="cb1"><pre
-class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">dune</span> build</span></code></pre></div>
+<div id="cb4"><pre
+class="terminal"><code class="terminal"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">dune</span> build</span></code></pre></div>
 <p>The 0WM server daemon can then be started by running:</p>
-<div id="cb1"><pre
-class="terminal"><code class="terminal"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">dune</span> exec src/zwmd.exe</span></code></pre></div>
+<div id="cb5"><pre
+class="terminal"><code class="terminal"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="an">&gt; </span><span class="ex">dune</span> exec src/zwmd.exe</span></code></pre></div>
 <h3 id="environment">Environment</h3>
 <p>0WM Server’s daemon obeys the following environment variables, which
 can be used to preconfigure the server:</p>
