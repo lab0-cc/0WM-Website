@@ -6,9 +6,13 @@ p-install-server: true
 sp-install: true
 ---
 
+::: audience
+**Target audience** Server administrators
+:::
+
 # Introduction
 
-0WM server is the central backend for 0WM. It receives scans from the client and floorplan data from the operator interface and processes them to generate coverage heatmaps. The project is not officially released, therefore its distribution channels are rather scarce at the moment. That being said, we offer several ways to try it out in the meantime.
+0WM Server is the central backend for 0WM. It receives scans from the client and floorplan data from the operator interface and processes them to generate coverage heatmaps. The project is not officially released, therefore its distribution channels are rather scarce at the moment. That being said, we offer several ways to try it out in the meantime.
 
 # Server installation
 

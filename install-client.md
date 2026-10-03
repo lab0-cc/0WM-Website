@@ -6,6 +6,10 @@ p-install-client: true
 sp-install: true
 ---
 
+::: audience
+**Target audience** Web administrators [Website installation](#website-installation), phone administrators [Platform configuration](#platform-configuration)
+:::
+
 # Introduction
 
 0WM Client is the mobile survey frontend for 0WM. It uses WebXR to track the device’s movement and combines that information with Wi-Fi scan data fetched from an access point. Depending on the mobile device used, [additional configuration](#client-configuration) may be needed. The project is not officially released, therefore its distribution channels are rather scarce at the moment. That being said, 0WM Client only consists of static HTML/JS code and does not need to be built.

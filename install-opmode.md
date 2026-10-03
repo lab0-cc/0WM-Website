@@ -6,6 +6,10 @@ p-install-opmode: true
 sp-install: true
 ---
 
+::: audience
+**Target audience** Web administrators
+:::
+
 # Introduction
 
 0WM OpMode is the operator dashboard for managing Wi-Fi surveys. It is currently used to upload floorplans, edit their boundaries and walls, georeference them on a world map, and send metadata to the 0WM Server. The project is not officially released, therefore its distribution channels are rather scarce at the moment. That being said, 0WM OpMode only consists of static HTML/JS code and does not need to be built.

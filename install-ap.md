@@ -6,6 +6,10 @@ p-install-ap: true
 sp-install: true
 ---
 
+::: audience
+**Target audience** Server administrators
+:::
+
 # Introduction
 
 0WM collects measurements from access points connected to mobile devices. For those access points to be able to report the necessary data, they require special configuration. A typical 0WM access point acts as an Ethernet switch advertising its Unique Local Address (ULA) as a gateway and its name (usually `ap`) as a Multicast DNS record (usually `ap.local`).
