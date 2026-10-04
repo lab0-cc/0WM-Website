@@ -9,6 +9,185 @@
 </head>
 <body>
 <nav><a href="/"><img src="/img/0wm.svg" alt="0WM logo"></a><ul><li class="menu"><a href="/install.html">Installation guides</a><ul><li><a href="/install-server.html">Server</a></li><li><a href="/install-opmode.html">OpMode</a></li><li><a href="/install-client.html">Client</a></li><li><a href="/install-ap.html">AP</a></li></ul></li><li class="menu current-sub"><a href="/guides.html">User guides</a><ul><li><a href="/guide-server.html">Server</a></li><li class="current"><a href="/guide-opmode.html">OpMode</a></li><li><a href="/guide-client.html">Client</a></li></ul></li><li><a href="https://github.com/lab0-cc">GitHub organization</a></li></ul></nav>
-<main><p><em>Guide currently under development</em></p></main>
+<aside class="toc">
+  <ul>
+  <li><a href="#introduction"
+  id="toc-introduction">Introduction</a></li>
+  <li><a href="#getting-started" id="toc-getting-started">Getting
+  started</a>
+  <ul>
+  <li><a href="#adding-a-floorplan" id="toc-adding-a-floorplan">Adding a
+  floorplan</a>
+  <ul>
+  <li><a href="#floorplan-editor" id="toc-floorplan-editor">Floorplan
+  editor</a></li>
+  <li><a href="#map-editor" id="toc-map-editor">Map editor</a></li>
+  <li><a href="#additional-parameters"
+  id="toc-additional-parameters">Additional parameters</a></li>
+  </ul></li>
+  <li><a href="#editing-and-removing-a-floorplan"
+  id="toc-editing-and-removing-a-floorplan">Editing and removing a
+  floorplan</a></li>
+  </ul></li>
+  <li><a href="#navigating-the-interface"
+  id="toc-navigating-the-interface">Navigating the interface</a>
+  <ul>
+  <li><a href="#interacting-with-the-map"
+  id="toc-interacting-with-the-map">Interacting with the map</a></li>
+  <li><a href="#locating-floorplans"
+  id="toc-locating-floorplans">Locating floorplans</a></li>
+  </ul></li>
+  </ul>
+</aside>
+<script src="/js/toc.js"></script>
+<main><div class="audience">
+<p><strong>Target audience</strong> Wi-Fi operators</p>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>0WM OpMode is the operator dashboard for managing Wi-Fi surveys. It
+is currently used to upload floorplans, edit their boundaries and walls,
+georeference them on a world map, and send metadata to the 0WM Server.
+While the project is still in its early stages, the operator mode
+already provides all the tools to properly prepare Wi-Fi field
+measurements.</p>
+<h1 id="getting-started">Getting started</h1>
+<p>The first time the operator mode is accessed, you are welcomed with
+an empty world map centered on Brest, France. The map can be navigated
+to your desired location, but as soon as floorplans are uploaded, the
+map will center on them by default.</p>
+<div class="center">
+<p><img src="img/opmode-home-1.png" class="single"
+alt="0WM OpMode home screen" /></p>
+</div>
+<h2 id="adding-a-floorplan">Adding a floorplan</h2>
+<p>To add a new floorplan, simply click the “New floorplan” button. You
+are prompted to import a floorplan image (JPEG, PNG, or WebP), which you
+later can edit and place on the map. At any time, you can cancel to
+return to the main view by clicking the “Cancel” button.</p>
+<p>The floorplan interface offers 3 tabs:</p>
+<ul>
+<li><a href="#floorplan-editor">Floorplan Editor</a></li>
+<li><a href="#map-editor">Map Editor</a></li>
+<li><a href="#additional-parameters">Additional Parameters</a></li>
+</ul>
+<h3 id="floorplan-editor">Floorplan editor</h3>
+<p>The floorplan editor allows to add walls and boundaries to the
+floorplan. It is necessary to define at least one boundary (with the
+<img src="img/poly.svg" class="inline" alt="New boundary button" />
+button), as it is used to determine what is considered to be inside or
+outside the building or room you are adding. The <img src="img/line.svg"
+class="inline" alt="New wall button" /> button allows to define walls,
+used for heatmap generation.</p>
+<div class="center">
+<p><img src="img/opmode-edit-1.png" class="single"
+alt="0WM OpMode floorplan editor" /></p>
+</div>
+<p>Indicators tell you exactly what you can do to interact with the
+floorplan, with the following pictograms:</p>
+<ul>
+<li><span
+style="display:inline-block;background:#0000;border:6px solid #0000;border-right:10px solid #000;margin-left:-5px;margin-right:1px"></span>,
+for left click;</li>
+<li><span
+style="display:inline-block;background:#0000;border:6px solid #0000;border-left:10px solid #000;margin-left:1px;margin-right:-5px"></span>,
+for right click;</li>
+<li>⇧, for the shift key;</li>
+<li>⎈ / ⌘ (on macOS), for either the control, command, or meta key;</li>
+<li>⎇ / ⌥ (on macOS), for either the alt or the option key;</li>
+<li>⎋, for the escape key.</li>
+</ul>
+<p>Once at least one boundary is defined, the tab’s orange dot
+disappears, indicating that the floorplan is valid.</p>
+<div class="center">
+<p><img src="img/opmode-edit-2.png" class="single"
+alt="0WM OpMode floorplan editor (boundary placement)" /></p>
+</div>
+<h3 id="map-editor">Map editor</h3>
+<p>Placing the floorplan on the world map requires placing anchors on
+both of those, in a process called georeferencing. First, the anchors
+marked <span class="anchor one">1</span>, <span
+class="anchor two">2</span> and <span class="anchor three">3</span> need
+to be positioned (by dragging and dropping them) at reference points
+easy to position on the map, usually corners.</p>
+<div class="center">
+<p><img src="img/opmode-place-1.png" class="pair"
+alt="0WM OpMode floorplan placement" /><img src="img/opmode-place-2.png"
+class="pair"
+alt="0WM OpMode floorplan placement (anchor placement on the floorplan)" /></p>
+</div>
+<p>Then, the map needs to be moved and zoomed to where you want to place
+the floorplan. The floorplan can be placed by clicking the “Place in
+current view” button.</p>
+<div class="center">
+<p><img src="img/opmode-place-3.png" class="pair"
+alt="0WM OpMode floorplan placement (location on the world map)" /><img
+src="img/opmode-place-4.png" class="pair"
+alt="0WM OpMode floorplan placement (floorplan placement on the world map)" /></p>
+</div>
+<p>Finally, the corresponding <span class="anchor one">1</span>, <span
+class="anchor two">2</span> and <span class="anchor three">3</span>
+anchors can be moved on the world map to correctly position the
+floorplan.</p>
+<div class="center">
+<p><img src="img/opmode-place-5.png" class="single"
+alt="0WM OpMode floorplan placement (anchor placement on the world map)" /></p>
+</div>
+<p>Once the floorplan is placed on the world map, the tab’s orange dot
+disappears.</p>
+<h3 id="additional-parameters">Additional parameters</h3>
+<p>The last tab asks for altitude data, which need to be filled. Once
+this is done, the tab’s orange dot disappears. To submit the floorplan,
+it needs to be named, then the “Submit” button becomes clickable.</p>
+<div class="center">
+<p><img src="img/opmode-finalize-1.png" class="pair"
+alt="0WM OpMode floorplan description" /><img
+src="img/opmode-finalize-2.png" class="pair"
+alt="0WM OpMode floorplan description (parameters configuration)" /></p>
+</div>
+<p>You are then shown again the main view, this time with your new
+floorplan.</p>
+<div class="center">
+<p><img src="img/opmode-home-2.png" class="single"
+alt="0WM OpMode home screen (with new floorplan)" /></p>
+</div>
+<h2 id="editing-and-removing-a-floorplan">Editing and removing a
+floorplan</h2>
+<p>Once a floorplan has been uploaded, hovering it on the world map
+reveals two buttons, one to edit the floorplan, and another one to
+delete it.</p>
+<div class="center">
+<p><img src="img/opmode-home-3.png" class="single"
+alt="0WM OpMode home screen (with modification and deletion buttons)" /></p>
+</div>
+<h1 id="navigating-the-interface">Navigating the interface</h1>
+<h2 id="interacting-with-the-map">Interacting with the map</h2>
+<p>The interface allows to move the world map by dragging it with your
+mouse or with directional arrows, to zoom it with either your mouse
+wheel, scroll and zoom touch gestures, or the “+” and “−” buttons, and
+to change the map provider. Currently, we support the following
+providers:</p>
+<ul>
+<li><a href="https://openstreetmap.org" target="_blank"
+rel="noopener noreferrer">OpenStreetMap</a>;</li>
+<li><a href="https://carto.com" target="_blank"
+rel="noopener noreferrer">CartoDB</a>;</li>
+<li><a href="https://ign.fr" target="_blank"
+rel="noopener noreferrer">IGN</a>, both map and satellite.</li>
+</ul>
+<div class="note">
+<p>In the future, the providers will be configurable on the server
+side.</p>
+</div>
+<h2 id="locating-floorplans">Locating floorplans</h2>
+<p>Two buttons help in case you get lost in the world map:</p>
+<ul>
+<li>“Locate floorplans”, to quickly highlight floorplans both in and out
+of view;</li>
+<li>“Reset view”, to reset the view to its initial state.</li>
+</ul>
+<div class="center">
+<p><img src="img/opmode-home-4.png" class="single"
+alt="0WM OpMode home screen (with floorplan location)" /></p>
+</div></main>
 </body>
 </html>

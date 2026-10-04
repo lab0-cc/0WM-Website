@@ -9,6 +9,87 @@
 </head>
 <body>
 <nav><a href="/"><img src="/img/0wm.svg" alt="0WM logo"></a><ul><li class="menu"><a href="/install.html">Installation guides</a><ul><li><a href="/install-server.html">Server</a></li><li><a href="/install-opmode.html">OpMode</a></li><li><a href="/install-client.html">Client</a></li><li><a href="/install-ap.html">AP</a></li></ul></li><li class="menu current-sub"><a href="/guides.html">User guides</a><ul><li class="current"><a href="/guide-server.html">Server</a></li><li><a href="/guide-opmode.html">OpMode</a></li><li><a href="/guide-client.html">Client</a></li></ul></li><li><a href="https://github.com/lab0-cc">GitHub organization</a></li></ul></nav>
-<main><p><em>Guide currently under development</em></p></main>
+<aside class="toc">
+  <ul>
+  <li><a href="#introduction"
+  id="toc-introduction">Introduction</a></li>
+  <li><a href="#server-architecture" id="toc-server-architecture">Server
+  architecture</a>
+  <ul>
+  <li><a href="#monitor" id="toc-monitor">Monitor</a></li>
+  <li><a href="#web-server" id="toc-web-server">Web server</a></li>
+  </ul></li>
+  <li><a href="#data-storage" id="toc-data-storage">Data
+  storage</a></li>
+  </ul>
+</aside>
+<script src="/js/toc.js"></script>
+<main><div class="audience">
+<p><strong>Target audience</strong> Server administrators</p>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>0WM Server is the central backend for 0WM. It receives scans from the
+client and floorplan data from the operator interface and processes them
+to generate coverage heatmaps. At this point in the project, very few
+options are available to tune the server’s behavior; yet, we provide
+some tools to interact with it, which we intend to extend in the
+future.</p>
+<h1 id="server-architecture">Server architecture</h1>
+<p>The 0WM server is in reality made of two distinct servers running
+concurrently:</p>
+<ul>
+<li>A monitor, listening to a local UNIX socket and performing low-level
+administration tasks;</li>
+<li>A web server, listening to a configured HTTP address and port
+pair.</li>
+</ul>
+<h2 id="monitor">Monitor</h2>
+<p>The only role of the monitor is to handle the web server’s
+configuration, through an internal <code>/config</code> HTTP endpoint.
+The only documented and supported way to interact with the monitor is
+through the <code>0wm</code> command-line tool.</p>
+<p>The server supports the following configuration options:</p>
+<ul>
+<li><code>interface</code>, the network interface to listen on (defaults
+to <code>localhost</code>);</li>
+<li><code>port</code>, the port to listen on (defaults to
+<code>8080</code>);</li>
+<li><code>aps</code>, the list of 0WM-ready access points (IP addresses
+and/or hostnames);</li>
+<li><code>ssids</code>, the list of SSIDs to include in heatmaps.</li>
+</ul>
+<div class="warn">
+<p>The configuration options are not stable yet and
+<strong>will</strong> change in the future.</p>
+</div>
+<p>The configuration can be shown with <code>0wm config show</code> and
+edited with <code>0wm config edit</code>. Both commands can be passed a
+<code>--format</code> argument to show and edit the configuration in a
+different representation format. Individual configuration options can be
+set with <code>0wm config set</code>.</p>
+<h2 id="web-server">Web server</h2>
+<p>The web server exposes the actual 0WM API through the interface and
+port configured in the monitor. A Swagger interface is served at the
+root of the web server (<em>i.e.</em>
+<code>http://localhost:8080/</code> if <code>interface</code> is set to
+<code>localhost</code> and <code>port</code> is set to
+<code>8080</code>).</p>
+<div class="warn">
+<p>The web server doesn’t natively handle TLS, so a TLS termination
+proxy supporting HTTP and WebSocket is required to run 0WM Server in a
+secure environment.</p>
+</div>
+<h1 id="data-storage">Data storage</h1>
+<p>0WM manages all its configuration and measurements through a Git
+database stored under the <code>database</code> directory of its
+persistent storage. On a typical Debian installation, this directory is
+located at <code>/var/lib/0wm/database</code>. This Git database should
+regularly be pushed to a remote Git server; this is not handled by 0WM
+directly.</p>
+<p>Floorplan images are stored in another directory, <code>data</code>,
+so as not to pollute the Git database. On a typical Debian installation,
+this directory is located at <code>/var/lib/0wm/data</code>. This
+directory should regularly be pushed to a remote file store; this is not
+handled by 0WM directly.</p></main>
 </body>
 </html>
