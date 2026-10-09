@@ -54,6 +54,8 @@ h1 {
   position: relative;
   overflow: hidden;
   font-style: italic;
+  padding-left: 6px;
+  margin-left: -6px;
 }
 
 h1::after {
@@ -94,7 +96,7 @@ strong {
 
 nav {
   padding: 12px 30px;
-  background: #fffe;
+  background: #fffffff6;
   position: fixed;
   width: 100%;
   top: 0;
@@ -117,7 +119,7 @@ nav > ul {
 
 nav > ul a, a.button {
   color: #444;
-  background: #f6f6f6;
+  background: #00000006;
   transition: .2s ease;
   transition-property: color, background;
 }
@@ -141,7 +143,7 @@ nav > ul > li:not(:first-child) {
 }
 
 nav > ul a:hover, a.button:hover {
-  background: #eee;
+  background: #0000000e;
   color: #111;
 }
 
@@ -154,6 +156,7 @@ nav > ul > li > ul {
   width: 100%;
   display: none;
   box-shadow: 0 1px 2px #0004;
+  background: #fff;
 }
 
 nav > ul > li > ul * {
@@ -175,7 +178,7 @@ nav > ul > li.current > a {
 }
 
 nav > ul > li > ul > li.current > a {
-  box-shadow: inset 6px 0px #0002;
+  box-shadow: inset 5px 0px #0002;
 }
 
 nav > ul > li.current-sub > a {
@@ -346,27 +349,28 @@ main > img {
   width: 100%;
 }
 
-.window, .phone {
-  border: 1px solid #0003;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px -8px #000;
+.phone {
+  text-align: center;
+  font-size: 0;
 }
 
-.phone {
+.phone > p {
   border-radius: 24px;
-  border: 5px solid #ccc;
+  border: 5px solid #fff;
   display: inline-block;
   overflow: hidden;
   font-size: 0px;
   position: relative;
+  box-shadow: 0 2px 12px -8px #000;
+  margin: 10px;
+  background: url(/img/client-environment.jpg) center/cover;
 }
 
-.phone > img {
-  max-width: 500px;
-  max-height: 500px;
+.phone > p > img {
+  max-width: 300px;
 }
 
-.phone::before {
+.phone > p:not(.nocam)::before {
   content: "";
   display: block;
   position: absolute;
