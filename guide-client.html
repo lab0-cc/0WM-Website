@@ -9,6 +9,131 @@
 </head>
 <body>
 <nav><a href="/"><img src="/img/0wm.svg" alt="0WM logo"></a><ul><li class="menu"><a href="/install.html">Installation guides</a><ul><li><a href="/install-server.html">Server</a></li><li><a href="/install-opmode.html">OpMode</a></li><li><a href="/install-client.html">Client</a></li><li><a href="/install-ap.html">AP</a></li></ul></li><li class="menu current-sub"><a href="/guides.html">User guides</a><ul><li><a href="/guide-server.html">Server</a></li><li><a href="/guide-opmode.html">OpMode</a></li><li class="current"><a href="/guide-client.html">Client</a></li></ul></li><li><a href="https://github.com/lab0-cc">GitHub organization</a></li></ul></nav>
-<main><p><em>Guide currently under development</em></p></main>
+<aside class="toc">
+  <ul>
+  <li><a href="#introduction"
+  id="toc-introduction">Introduction</a></li>
+  <li><a href="#getting-started" id="toc-getting-started">Getting
+  started</a>
+  <ul>
+  <li><a href="#configuring-the-map"
+  id="toc-configuring-the-map">Configuring the map</a>
+  <ul>
+  <li><a href="#floorplan-selection"
+  id="toc-floorplan-selection">Floorplan selection</a></li>
+  <li><a href="#automatic-placement"
+  id="toc-automatic-placement">Automatic placement</a></li>
+  <li><a href="#manual-placement" id="toc-manual-placement">Manual
+  placement</a></li>
+  </ul></li>
+  <li><a href="#performing-measurements"
+  id="toc-performing-measurements">Performing measurements</a></li>
+  </ul></li>
+  </ul>
+</aside>
+<script src="/js/toc.js"></script>
+<main><div class="audience">
+<p><strong>Target audience</strong> Wi-Fi operators</p>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>0WM Client is the mobile survey frontend for 0WM. It uses WebXR to
+track the device’s movement and combines that information with Wi-Fi
+scan data fetched from an access point. While the project is still in
+its early stages, the client already provides the basis to perform
+precise Wi-Fi field surveys.</p>
+<p>If you do not have any special equipment to conveniently connect and
+hold your phone and access point, you may be interested in consulting
+the <a href="https://github.com/lab0-cc/0WM-Models" target="_blank"
+rel="noopener noreferrer">0WM-Models repository</a>, which provides 3D
+models that you can print yourselves.</p>
+<h1 id="getting-started">Getting started</h1>
+<p>The client welcomes you with a screen asking to click on a button to
+start (this is required by modern browsers’ security policies). On iOS,
+the interface quickly redirects you to Apple’s website to open 0WM
+Client through a tiny App Clip (as Safari is missing a few required
+features). After clicking, the client connects to the 0WM access point
+(it first tries <code>ap.local</code>, then successively the access
+points configured on the server) and communicates with its radios.</p>
+<div class="phone">
+<p><img src="img/client-home-1.png" alt="0WM Client home screen" /></p>
+<p><img src="img/client-home-2.png"
+alt="0WM Client home screen (connection to the AP)" /></p>
+<p><img src="img/client-survey-1.png"
+alt="0WM Client survey screen" /></p>
+</div>
+<h2 id="configuring-the-map">Configuring the map</h2>
+<p>There is a mini-map at the bottom-right corner of the screen which
+locates you on a floorplan <a
+href="guide-opmode.html#adding-a-floorplan">previously added in 0WM
+OpMode</a>. Clicking this mini-map expands it and offers options to
+modify the current flooplan (by default, no floorplan is selected).</p>
+<h3 id="floorplan-selection">Floorplan selection</h3>
+<p>Clicking the floorplan selection dropdown provides a list of
+floorplans sorted by distance (as reported by your phone’s GPS module).
+To select a floorplan, simply click it (it should show a green dot if
+you appear to be within its boundaries <a
+href="guide-opmode.html#floorplan-editor">configured in the
+OpMode</a>).</p>
+<div class="phone">
+<p><img src="img/client-edit-1.png"
+alt="0WM Client floorplan view" /></p>
+<p><img src="img/client-edit-2.png"
+alt="0WM Client floorplan view (floorplan selection)" /></p>
+<p><img src="img/client-edit-3.png"
+alt="0WM Client floorplan view (floorplan change)" /></p>
+</div>
+<h3 id="automatic-placement">Automatic placement</h3>
+<p>Currently, the floorplan placement is a manual process, but future
+versions of the client will allow using your phone’s wall detection
+sensors to precisely locate you within a building.</p>
+<div class="phone">
+<p><img src="img/client-edit-4.png"
+alt="0WM Client floorplan view (placement options)" /></p>
+<p><img src="img/client-edit-5.png"
+alt="0WM Client floorplan view (floorplan automatic placement)" /></p>
+</div>
+<h3 id="manual-placement">Manual placement</h3>
+<p>Once a floorplan is selected, it is shown on the mini-map so that you
+are at its center, and oriented to face north, as <a
+href="guide-opmode.html#map-editor">placed in the OpMode</a>. Clicking
+the “Edit” button allows you to move the floorplan with one finger or
+move and rotate it with two fingers (in case your phone cannot perfectly
+find the Geographic North). It is not possible to zoom or skew the
+floorplan, as its dimensions and geometry are directly inherited from
+the OpMode. Once you are done editing the floorplan, click “Ok”. The
+mini-map can then be closed using the X button.</p>
+<div class="phone">
+<p><img src="img/client-edit-6.png"
+alt="0WM Client floorplan view (floorplan manual placement)" /></p>
+<p><img src="img/client-edit-7.png"
+alt="0WM Client floorplan view (floorplan manual placement)" /></p>
+<p><img src="img/client-edit-8.png"
+alt="0WM Client floorplan view (floorplan placement validation)" /></p>
+</div>
+<h2 id="performing-measurements">Performing measurements</h2>
+<p>To perform a measurement, click the “SCAN” button and hold still
+while the 0WM access point radios are scanning the environment. Once
+this is done, the mini-map will update a heatmap of all the measurements
+done is this session. All the data is synchronized to the 0WM server, so
+once the survey session is finished, you can safely close the web
+application.</p>
+<div class="phone">
+<p><img src="img/client-survey-2.png"
+alt="0WM Client survey screen (new floorplan)" /></p>
+<p class="nocam">
+<img src="img/client-survey-3.png"
+alt="0WM Client survey screen (Wi-Fi scan)" />
+</p>
+<!-- This is a Chrome bug that only appears in instrumentation -->
+<p><img src="img/client-survey-4.png"
+alt="0WM Client survey screen (updated heatmap)" /></p>
+</div>
+<p><em>Background image from <a
+href="https://unsplash.com/fr/@declansun" target="_blank"
+rel="noopener noreferrer">Declan Sun</a>, available on <a
+href="https://unsplash.com/photos/jdsSkQNTPuo" target="_blank"
+rel="noopener noreferrer">Unsplash</a> under the <a
+href="https://unsplash.com/license" target="_blank"
+rel="noopener noreferrer">Unsplash license</a>.</em></p></main>
 </body>
 </html>
